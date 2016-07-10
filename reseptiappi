@@ -1,0 +1,28 @@
+TODO-LISTA RESEPTI APPI
+
+Vaatimusmäärittely
+
+Reseptinäkymä
+	-reseptin nimi
+	-ainesosat -> merkkaus ostetuksi
+	-note
+	-reittaus
+	-tagitus
+	-tulostusnäkymä
+
+Uuden reseptin luonti
+	-erillinen lomake, jossa myös muokkaus
+	-ensin reseptin nimi -> tallennus -> muiden tietokenttien lisäys
+
+Ainesosat
+	-hakukelpoinen lista
+	-määrät, puolitustoiminnot
+
+Päänäkymä (reseptilista)
+
+	-hakutoiminto, hakee kaikista kentistä -> nimi, ainekset, note
+	-oletusjärjestys aakkoset, mahdollisuus myös raten mukaan
+	
+
+
+
