@@ -1,4 +1,12 @@
 Rails.application.routes.draw do
+  resources :ingredients
+  resources :recipes
+
+  post 'recipes/:id/add/:inc_id', to: 'recipes#add_ingredient'
+
+  root 'recipes#index'
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
