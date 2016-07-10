@@ -54,6 +54,8 @@ group :development do
   gem 'rails_layout'
 end
 
+  gem 'rspec'
+
 group :production do
   gem 'pg'
   gem 'rails_12factor'
