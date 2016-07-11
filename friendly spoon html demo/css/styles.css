@@ -1,0 +1,21 @@
+.row-centered {
+    text-align:center;
+}
+.col-centered {
+    display:inline-block;
+    float:none;
+    /* reset the text-align */
+    text-align:left;
+    /* inline-block space fix */
+    margin-right:-4px;
+}
+.inc-box {
+	border: 1px solid black;
+	margin-top:10px;
+	padding: 10px;
+}
+
+.edit {
+	float:right;
+	margin-top:25px;
+}
