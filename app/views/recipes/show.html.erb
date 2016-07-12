@@ -1,34 +1,44 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @recipe.name %>
-</p>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <%= link_to 'Edit', edit_recipe_path(@recipe), class:'btn btn-warning edit' %>
+      <h2 class="title"><%= @recipe.name %></h2>
+      <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+      <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+      <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+      <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+      <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <h4>Ingredients</h4>
+      <div class="inc-box">
 
-<p>
-  <strong>Note:</strong>
-  <%= @recipe.note %>
-</p>
-
-<p>
-  <strong>User:</strong>
-  <%= @recipe.user_id %>
-</p>
-
-<p>
-  <strong>Public:</strong>
-  <%= @recipe.public %>
-</p>
-
-<p>
-  <strong>Level:</strong>
-  <%= @recipe.level %>
-</p>
-
-<p>
-  <strong>Time:</strong>
-  <%= @recipe.time %>
-</p>
-
-<%= link_to 'Edit', edit_recipe_path(@recipe) %> |
-<%= link_to 'Back', recipes_path %>
+        <% @recipe_ingredients.each do |inc| %>
+        <li>
+          <%= inc.ingredient %>
+        </li>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <h4>Time: <%= @recipe.time %> minutes</h4>
+      <h4>Difficulty: Semi-hard</h4>
+      <h4>What to do</h4>
+      <ol>
+      <li>Do this and that</li>
+      <li>Do that and this</li>
+      <li>Hail satan</li>
+      <li>Eat</li>
+    </ol>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12"></div>
+</div>
+</div>

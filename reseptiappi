@@ -5,10 +5,12 @@ Vaatimusmäärittely
 Reseptinäkymä
 	-reseptin nimi
 	-ainesosat -> merkkaus ostetuksi
+	-ainesosat -> ryhmittely (pohja, kuorrute yms)
 	-note
 	-reittaus
 	-tagitus
 	-tulostusnäkymä
+	-
 
 Uuden reseptin luonti
 	-erillinen lomake, jossa myös muokkaus
@@ -25,4 +27,17 @@ Päänäkymä (reseptilista)
 	
 
 
+mittayksiköt
+	TILAVUUS
+	-CUP 236,588 ml
+	-DL 100 ml
+	-L 1000 ml
+	-TL 5ml
+	-RL 15ml
+	-MM 1ml
+	MASSA
+	-g
+	-pounds 453,592g
+	-oz 28,3495g
+	-pcs
 

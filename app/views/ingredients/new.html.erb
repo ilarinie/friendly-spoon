@@ -1,5 +1,48 @@
 <h1>New Ingredient</h1>
+<div ng-app="friendlyApp" ng-controller="IngredientsController" >
 
-<%= render 'form' %>
+<%= form_for(@ingredient) do |f| %>
+  <% if @ingredient.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@ingredient.errors.count, "error") %> prohibited this ingredient from being saved:</h2>
 
+      <ul>
+      <% @ingredient.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name, "ng-model" => "searchText", "uib-typeahead" => "ingredient as ingredient.name for ingredient in ingredients | filter:{name:$viewValue} | limitTo:8" %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+
+
+
+<h3>Ingredient list</h3>
+
+
+
+<table class="table">
+  <thead>
+    <th>
+      Ingredient
+    </th>
+  </thead>
+  <tbody>
+    <tr ng-repeat="ingredient in ingredients | filter:searchText">
+      <td>
+        {{ingredient.name}}
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+</div>
 <%= link_to 'Back', ingredients_path %>

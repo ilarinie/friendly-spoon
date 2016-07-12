@@ -52,6 +52,8 @@ group :development do
   gem 'sqlite3'
 
   gem 'rails_layout'
+
+  gem 'rack-mini-profiler'
 end
 
   gem 'rspec'

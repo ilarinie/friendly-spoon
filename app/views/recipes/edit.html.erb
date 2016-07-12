@@ -12,6 +12,9 @@
   <% end %>
 </ul>
 <h2>Add Ingredients</h2>
+<div ng-app="friendlyApp" ng-controller="IngredientsController">
+
+<input ng-model="searchText" class="form-control" uib-typeahead="ingredient as ingredient.name for ingredient in ingredients | filter:{name:$viewValue} | limitTo:8"/>
 <table class="table">
   <thead>
     <th>
@@ -22,19 +25,18 @@
     </th>
   </thead>
   <tbody>
-    <% @ingredients.each do |inc| %>
-    <tr>
+    <tr ng-repeat="ingredient in ingredients | filter:searchText">
       <td>
-        <%= inc %>
+        {{ingredient.name}}
       </td>
       <td>
-        <%= link_to '+', 'add/'+inc.id.to_s, method: :post %>
+        <%= link_to '+', 'add/{{ingredient.id}}', method: :post %>
       </td>
     </tr>
-    <% end %>
   </tbody>
 </table>
 
 
+</div>
 <%= link_to 'Show', @recipe %> |
-<%= link_to 'Back', recipes_path %>
+<%= link_to 'Back', @recipe, method: :get %>

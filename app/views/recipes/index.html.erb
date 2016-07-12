@@ -1,37 +1,61 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Recipes</h1>
+<div class="container-fluid">
+  <h1>Friendly Spoon</h1>
+  <h3>is here for you!</h3>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Note</th>
-      <th>User</th>
-      <th>Public</th>
-      <th>Level</th>
-      <th>Time</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+  <% cache 'recipelist', skip_digest: true do %>
+  <div ng-app="friendlyApp" ng-controller="RecipesController">
+    <div class="row main-row">
+      <div class="col-xs-11">
+        <form role="form">
+          <label for="searchText" >Search recipes</label>
+          <input type="text" ng-model="searchText" class="form-control" uib-typeahead="recipe as recipe.name for recipe in recipes | filter:{name:$viewValue} | limitTo:8">
+        </form>
+      </div>
+    </div>
+    <div class="row main-row">
+      <div class="col-xs-11">
+      <label>Tags</label>
+      <select class="form-control">
+        <option>Cookies</option>
+        <option>Bread</option>
+        <option>Glow clouds</option>
+      </select>
+      </div>
+    </div>
+    <div class="row main-row">
+      <div class="col-xs-11">
+      <button class="btn">ABC <span class="glyphicon glyphicon-sort"></span></button>
+      <button class="btn">Rating <span class="glyphicon glyphicon-sort"></span></button>
+      <button class="btn">Time <span class="glyphicon glyphicon-sort"></span></button>
+      </div>
+    </div>
+    <div class="row main-row">
+      <div class="col-xs-11">
+        <table class="table">
+          <thead>
+            <th>
+              Recipe
+            </th>
+            <th>
+              Time
+            </th>
+          </thead>
+          <tbody>
+            <tr ng-repeat="recipe in recipes | filter:searchText">
+              <td>
+                <%= link_to '{{recipe.name}}', 'recipes/{{recipe.id}}' %>
+              </td>
+              <td>
+                {{recipe.time}}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
 
-  <tbody>
-    <% @recipes.each do |recipe| %>
-      <tr>
-        <td><%= recipe.name %></td>
-        <td><%= recipe.note %></td>
-        <td><%= recipe.user_id %></td>
-        <td><%= recipe.public %></td>
-        <td><%= recipe.level %></td>
-        <td><%= recipe.time %></td>
-        <td><%= link_to 'Show', recipe %></td>
-        <td><%= link_to 'Edit', edit_recipe_path(recipe) %></td>
-        <td><%= link_to 'Destroy', recipe, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Recipe', new_recipe_path %>
+  </div>
+  <% end %>
+</div>
