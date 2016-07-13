@@ -1,4 +1,4 @@
-var friendlyApp = angular.module("friendlyApp", ["ui.bootstrap"]);
+var friendlyApp = angular.module("friendlyApp", []);
 
 
 friendlyApp.controller("RecipesController", function($scope, $http) {
