@@ -22,6 +22,9 @@ friendlyApp.controller("RecipesController", ["$scope", "$http",  function($scope
 
 friendlyApp.controller("RecipeController", ["$scope", "$http", "$location", function($scope, $http, $location){
   
+  var dee = $location.url();
+  console.log("dee ="+dee)
+  
   var path = $location.url().substr(0, $location.url().length -1)+'.json';
   
   console.log(path)
