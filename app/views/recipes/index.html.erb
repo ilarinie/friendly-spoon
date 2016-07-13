@@ -26,9 +26,9 @@
     </div>
     <div class="row main-row">
       <div class="col-xs-11">
-      <button class="btn">ABC <span class="glyphicon glyphicon-sort"></span></button>
-      <button class="btn">Rating <span class="glyphicon glyphicon-sort"></span></button>
-      <button class="btn">Time <span class="glyphicon glyphicon-sort"></span></button>
+      <a class="btn" ng-click="sort_by('name')">ABC <span class="glyphicon glyphicon-sort"></span></a>
+      <button class="btn" disabled>Rating <span class="glyphicon glyphicon-sort"></span></button>
+      <a class="btn" ng-click="sort_by('time')">Time <span class="glyphicon glyphicon-sort"></span></a>
       </div>
     </div>
     <div class="row main-row">
@@ -36,14 +36,14 @@
         <table class="table">
           <thead>
             <th>
-              Recipe
+              <a ng-click="sort_by('name')">Recipe</a>
             </th>
             <th>
-              Time
+              <a ng-click="sort_by('time')">Time</a>
             </th>
           </thead>
           <tbody>
-            <tr ng-repeat="recipe in recipes | filter:searchText">
+            <tr ng-repeat="recipe in recipes | orderBy:order | filter:searchText">
               <td>
                 <%= link_to '{{recipe.name}}', 'recipes/{{recipe.id}}' %>
               </td>
