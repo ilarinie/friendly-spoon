@@ -23,15 +23,18 @@ friendlyApp.controller("RecipesController", ["$scope", "$http",  function($scope
 friendlyApp.controller("RecipeController", ["$scope", "$http", function($scope, $http){
   
   var path = window.location.pathname
-  
+  var rec
   console.log(path)
   
   $http.get(path+".json").success(function(data, status, headers, config) {
     $scope.recipe = data;
-    var rec = data;
     console.log(data)
     
   });
+  
+  $scope.$watch("recipe", function(value){
+  rec = $scope.recipe
+  }); 
   $scope.ingredients = rec
   console.log($scope.ingredients)
   
