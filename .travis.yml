@@ -8,6 +8,5 @@ deploy:
   provider: heroku
   api_key:
     secure: Qt9mmI5Vc8ADWiY+EHEGpi/WQVFkmfkpVDDuYxle8iY2KNAm0sU8joKHATuI75kTfw76jpFe1/wiMSuLabGgZMLIQR9di2QZU9+y17TYDF3qsplDiLz0tEqQ4V1r3s17Aq0dqCSO2UJOoJp/IOUDy5qDAorJczmtx/AonM/QX+p5oTgl6aRpfCjpBmc2biVYrRs7T8q5kEeB/3NxfNE9gVV46BA3VBaCrgK6sF6TtdD8FkpWLZ+1UsYORCkp5PqE1q1TKOT2kiC1PPIDM0v8NtfpW1+ICL5MI20tmlS7EB5UidaeP+Jg75YkkoYwuLcyj8Ju13Ups3kYtLGdqNW4lT+U7wl9F9XUC+m01a1n+bIlxclYwx5y077rvclWMFiuMVmTIfNjq5WgzYxsGmmASInizLFbNd5qvAVPrbqrJK+GzXM2T1XE288+vh1uO6ym6cjRQzkcxi0kG3LJkJlg/47AEqdMynkMcoOlRFk9A6cMZbP8W+QEKlM6976gcseErYYZ+5m8ehXhlO9g//tnIV8EpqDTZGxGCtLJgaT8TFEp9lnGqKFWCG9k1hMUKO12yfhA79LhBmyOFFyk4DVhH8F/uWpxaKSF/JyvFeWTY4OHKqa2jeNqUbwHShdf8KaXfDt6+au2dP52l38cVE6Df8DcvajoUgpXCh5GD2yOjzo=
-  run: 
-  - rake db:migrate
-  - bundle exec rake assets:precompile
+  run: rake db:migrate
+
