@@ -5,7 +5,7 @@ ruby '2.3.0'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5.2'
 
-gem 'angularjs-rails' (= 1.5.6)
+gem 'angularjs-rails', '1.5.6'
 
 
 # Use SCSS for stylesheets
