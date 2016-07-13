@@ -28,10 +28,11 @@ friendlyApp.controller("RecipeController", ["$scope", "$http", function($scope, 
   
   $http.get(path+".json").success(function(data, status, headers, config) {
     $scope.recipe = data;
+    var rec = data;
     console.log(data)
     
   });
-  $scope.ingredients = $scope.recipe.ingredients
+  $scope.ingredients = rec
   console.log($scope.ingredients)
   
 }]);
