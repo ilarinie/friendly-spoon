@@ -29,7 +29,10 @@ friendlyApp.controller("RecipeController", ["$scope", "$http", function($scope, 
   $http.get(path+".json").success(function(data, status, headers, config) {
     $scope.recipe = data;
     console.log(data)
+    
   });
+  $scope.ingredients = $scope.recipe.ingredients
+  console.log($scope.ingredients)
   
 }]);
 
