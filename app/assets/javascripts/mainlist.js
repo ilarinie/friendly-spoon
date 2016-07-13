@@ -20,22 +20,11 @@ friendlyApp.controller("RecipesController", ["$scope", "$http",  function($scope
 
 }]);
 
-friendlyApp.controller("RecipeController", ["$scope", "$http", "$location", function($scope, $http, $location){
+friendlyApp.controller("RecipeController", ["$scope", "$http", function($scope, $http){
   
-  var dee = $location.path();
-  console.log("dee ="+dee)
+  var path = window.location.pathname;
   
-  var path = $location.url().substr(0, $location.url().length -1)+'.json';
-  
-  console.log(path)
-  
-  var path = $location.url().substr(0, $location.url().length -2)+'.json';
-  
-  console.log(path)
-  
-  var subpath  = $location.url().substr(0, $location.url().length -2)
-  
-  console.log(subpath)
+  console.log("path = "+path);
   
   $http.get(path).success(function(data, status, headers, config) {
     $scope.recipe = data;
