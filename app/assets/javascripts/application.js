@@ -17,5 +17,4 @@
 //= require angular.min
 //= require ui-bootstrap-1.3.3
 //= require mainlist
-//= require_tree .
 
