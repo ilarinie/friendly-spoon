@@ -15,6 +15,7 @@
 //= require turbolinks
 //= require bootstrap-sprockets
 //= require angular
+//= require main
 //= require ui-bootstrap-1.3.3
 //= require mainlist
 
