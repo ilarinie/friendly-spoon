@@ -31,6 +31,7 @@ class RecipesController < ApplicationController
 
     respond_to do |format|
       if @recipe.save
+        expire_fragment('recipelist')
         format.html { redirect_to @recipe, notice: 'Recipe was successfully created.' }
         format.json { render :show, status: :created, location: @recipe }
       else
@@ -45,6 +46,7 @@ class RecipesController < ApplicationController
   def update
     respond_to do |format|
       if @recipe.update(recipe_params)
+        expire_fragment('recipelist')
         format.html { redirect_to @recipe, notice: 'Recipe was successfully updated.' }
         format.json { render :show, status: :ok, location: @recipe }
       else
@@ -58,6 +60,7 @@ class RecipesController < ApplicationController
   # DELETE /recipes/1.json
   def destroy
     @recipe.destroy
+    expire_fragment('recipelist')
     respond_to do |format|
       format.html { redirect_to recipes_url, notice: 'Recipe was successfully destroyed.' }
       format.json { head :no_content }
