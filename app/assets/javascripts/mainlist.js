@@ -10,6 +10,12 @@ friendlyApp.controller("RecipesController", function($scope, $http) {
 
     var _searchText;
     $scope.searchText = undefined;
+    
+  $scope.order = 'name';
+  
+  $scope.sort_by = function (order){
+    $scope.order = order;
+  }
 
 
 });
@@ -24,5 +30,11 @@ friendlyApp.controller("IngredientsController", function($scope, $http) {
 
   var _searchText;
   $scope.searchText = undefined;
+  
+   $scope.order = 'name';
+  
+  $scope.sort_by = function (order){
+    $scope.order = order;
+  }
 
 });
