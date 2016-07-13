@@ -1,10 +1,7 @@
-<p id="notice"><%= notice %></p>
-
 <div class="container-fluid">
   <h1>Friendly Spoon</h1>
   <h3>is here for you!</h3>
 
-  <% cache 'recipelist', skip_digest: true do %>
   <div ng-app="friendlyApp" ng-controller="RecipesController">
     <div class="row main-row">
       <div class="col-xs-11">
@@ -57,5 +54,4 @@
     </div>
 
   </div>
-  <% end %>
 </div>
