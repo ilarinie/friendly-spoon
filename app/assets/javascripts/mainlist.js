@@ -22,11 +22,11 @@ friendlyApp.controller("RecipesController", ["$scope", "$http",  function($scope
 
 friendlyApp.controller("RecipeController", ["$scope", "$http", function($scope, $http){
   
-  var path = window.location.pathname;
+  var path = window.location.pathname
   
-  console.log("path = "+path);
+  console.log(path)
   
-  $http.get(path).success(function(data, status, headers, config) {
+  $http.get(path+".json").success(function(data, status, headers, config) {
     $scope.recipe = data;
     console.log(data)
   });
