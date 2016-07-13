@@ -3,7 +3,7 @@
 <div class="container">
   <div class="row">
     <div class="col-xs-12">
-      <%= link_to 'Edit', edit_recipe_path(@recipe), class:'btn btn-warning edit' %>
+      <%= link_to 'Edit', edit_recipe_path(@recipe), class:'btn btn-warning edit', method: :get %>
       <h2 class="title"><%= @recipe.name %></h2>
       <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
       <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
@@ -28,7 +28,7 @@
   <div class="row">
     <div class="col-xs-12">
       <h4>Time: <%= @recipe.time %> minutes</h4>
-      <h4>Difficulty: Semi-hard</h4>
+      <h4>Difficulty: <%= @recipe.level %></h4>
       <h4>What to do</h4>
       <ol>
       <li>Do this and that</li>
