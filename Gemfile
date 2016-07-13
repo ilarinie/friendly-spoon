@@ -5,7 +5,6 @@ ruby '2.3.0'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5.2'
 
-gem 'angularjs-rails', '1.5.6'
 
 
 # Use SCSS for stylesheets
@@ -37,6 +36,10 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 # Bootstrap
 gem 'bootstrap-sass'
+gem 'bootstrap_form'
+
+# password cryptography
+gem 'bcrypt', '~> 3.1.7'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

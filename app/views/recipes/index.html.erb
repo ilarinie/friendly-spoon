@@ -36,7 +36,7 @@
               <a ng-click="sort_by('name')">Recipe</a>
             </th>
             <th>
-              <a ng-click="sort_by('time')">Time</a>
+              <a ng-click="sort_by('duration.id')">Time</a>
             </th>
           </thead>
           <tbody>
@@ -45,7 +45,7 @@
                 <%= link_to '{{recipe.name}}', 'recipes/{{recipe.id}}' %>
               </td>
               <td>
-                {{recipe.time}}
+                {{recipe.duration.range}}
               </td>
             </tr>
           </tbody>

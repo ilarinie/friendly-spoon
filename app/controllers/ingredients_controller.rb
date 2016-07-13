@@ -1,5 +1,6 @@
 class IngredientsController < ApplicationController
   before_action :set_ingredient, only: [:show, :edit, :update, :destroy]
+  before_action :ensure_that_signed_in, only: [:new, :edit, :create, :destroy, :update]
 
   # GET /ingredients
   # GET /ingredients.json
@@ -28,10 +29,10 @@ class IngredientsController < ApplicationController
 
     respond_to do |format|
       if @ingredient.save
-        format.html { redirect_to @ingredient, notice: 'Ingredient was successfully created.' }
+        format.html { redirect_to :back, notice: 'Ingredient was successfully created.' }
         format.json { render :show, status: :created, location: @ingredient }
       else
-        format.html { render :new }
+        format.html { redirect_to :back, alert: 'Ingredient with the same name allready exists' }
         format.json { render json: @ingredient.errors, status: :unprocessable_entity }
       end
     end

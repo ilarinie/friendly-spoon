@@ -11,10 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160710152534) do
+ActiveRecord::Schema.define(version: 20160713201808) do
+
+  create_table "durations", force: :cascade do |t|
+    t.string   "range"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "ingredients", force: :cascade do |t|
     t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "levels", force: :cascade do |t|
+    t.string   "level"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -23,9 +35,9 @@ ActiveRecord::Schema.define(version: 20160710152534) do
     t.integer  "ingredient_id"
     t.integer  "recipe_id"
     t.integer  "amount"
-    t.string   "unit"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
+    t.integer  "unit_id"
   end
 
   create_table "recipes", force: :cascade do |t|
@@ -33,8 +45,15 @@ ActiveRecord::Schema.define(version: 20160710152534) do
     t.string   "note"
     t.integer  "user_id"
     t.boolean  "public"
-    t.integer  "level"
-    t.integer  "time"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.integer  "duration_id"
+    t.integer  "level_id"
+    t.integer  "time_id"
+  end
+
+  create_table "units", force: :cascade do |t|
+    t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -42,8 +61,9 @@ ActiveRecord::Schema.define(version: 20160710152534) do
   create_table "users", force: :cascade do |t|
     t.string   "name"
     t.string   "username"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "password_digest"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
 end

@@ -1,34 +1,46 @@
 class RecipesController < ApplicationController
   before_action :set_recipe, only: [:show, :edit, :update, :destroy,:add_ingredient]
   before_action :set_ingredients, only: [:show, :edit]
+  before_action :ensure_that_signed_in, only: [:new, :edit, :create, :destroy, :update]
 
   # GET /recipes
   # GET /recipes.json
   def index
     @recipes = Recipe.all
-  end
+    @levels = Level.all
+    @times = Duration.all
+    end
 
   # GET /recipes/1
   # GET /recipes/1.json
   def show
     @recipe_ingredients = RecipeIngredient.where(recipe_id:@recipe.id)
+    @levels = Level.all
+    @times = Duration.all
   end
 
   # GET /recipes/new
   def new
     @recipe = Recipe.new
+    @levels = Level.all
+    @times = Duration.all
   end
 
   # GET /recipes/1/edit
   def edit
     @ingredients = Ingredient.all
+    @ingredient = Ingredient.new
+    @recipe_ingredient = RecipeIngredient.new
+    @units = Unit.all
+    @levels = Level.all
+    @times = Duration.all
   end
 
   # POST /recipes
   # POST /recipes.json
   def create
     @recipe = Recipe.new(recipe_params)
-
+    @recipe.user_id = current_user.id
     respond_to do |format|
       if @recipe.save
         expire_fragment('recipelist')
@@ -84,6 +96,6 @@ class RecipesController < ApplicationController
     end
     # Never trust parameters from the scary internet, only allow the white list through.
     def recipe_params
-      params.require(:recipe).permit(:name, :note, :user_id, :public, :level, :time)
+      params.require(:recipe).permit(:name, :note, :public, :level_id, :duration_id)
     end
 end

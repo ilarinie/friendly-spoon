@@ -3,18 +3,33 @@
 <%= render 'form' %>
 
 <h2>Ingredients</h2>
-<ul>
+<table class="table">
   <% @recipe_ingredients.each do |inc| %>
-    <li>
+  <tr>
+    <td>
       <%= inc.ingredient %>
-    </li>
+    </td>
+    <td>
+      <%= inc.amount %>
+    </td>
+    <td>
+      <%= inc.unit %>
+    </td>
+    <td>
+      <%= link_to 'Remove', recipe_ingredient_path(inc), method: :delete %>
+    </td>
+  </tr>
+    <% end %>
+</table>
 
-  <% end %>
 </ul>
 <h2>Add Ingredients</h2>
 <div ng-app="friendlyApp" ng-controller="IngredientsController">
 
-<input ng-model="searchText" class="form-control" uib-typeahead="ingredient as ingredient.name for ingredient in ingredients | filter:{name:$viewValue} | limitTo:8"/>
+<%= bootstrap_form_for(@ingredient) do |f| %>
+<%= f.text_field :name,  "ng-model"=>"searchText",class:"form-control", "uib-typeahead"=>"ingredient as ingredient.name for ingredient in ingredients | filter:{name:$viewValue} | limitTo:8" %>
+<%= f.submit %>
+<% end %>
 <table class="table">
   <thead>
     <th>
@@ -26,12 +41,22 @@
   </thead>
   <tbody>
     <tr ng-repeat="ingredient in ingredients | filter:searchText">
+      <%= bootstrap_form_for(@recipe_ingredient) do |fo| %>
       <td>
         {{ingredient.name}}
       </td>
       <td>
-        <%= link_to '+', 'add/{{ingredient.id}}', method: :post %>
+        <%= fo.number_field :amount %>
       </td>
+      <td>
+        <%= fo.select :unit_id, options_from_collection_for_select(@units, :id, :to_s) %>
+        <%= fo.hidden_field :recipe_id, :value => @recipe.id %>
+        <%= fo.hidden_field :ingredient_id, :value => "{{ingredient.id}}" %>
+      </td>
+      <td>
+        <%= fo.submit '+' %>
+      </td>
+      <% end %>
     </tr>
   </tbody>
 </table>

@@ -1,8 +1,13 @@
 Rails.application.routes.draw do
   resources :ingredients
   resources :recipes
+  resource :session, only: [:new, :create, :destroy]
+  resources :recipe_ingredients, only: [:create, :destroy]
 
   post 'recipes/:id/add/:inc_id', to: 'recipes#add_ingredient'
+
+  get 'login', to: 'sessions#new'
+  get 'logout', to: 'sessions#destroy'
 
   root 'recipes#index'
 
