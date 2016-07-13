@@ -20,7 +20,7 @@ friendlyApp.controller("RecipesController", ["$scope", "$http", function($scope,
 
 }]);
 
-friendlyApp.controller("RecipeController", [$scope, $http, function($scope, $http){
+friendlyApp.controller("RecipeController", ["$scope", "$http", function($scope, $http){
   $http.get('.json').success(function(data, status, headers, config) {
     $scope.recipe = data;
     console.log(data)
