@@ -24,6 +24,16 @@ friendlyApp.controller("RecipeController", ["$scope", "$http", "$location", func
   
   var path = $location.url().substr(0, $location.url().length -1)+'.json';
   
+  console.log(path)
+  
+  var path = $location.url().substr(0, $location.url().length -2)+'.json';
+  
+  console.log(path)
+  
+  var subpath  = $location.url().substr(0, $location.url().length -2)
+  
+  console.log(subpath)
+  
   $http.get(path).success(function(data, status, headers, config) {
     $scope.recipe = data;
     console.log(data)
