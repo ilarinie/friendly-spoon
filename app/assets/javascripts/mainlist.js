@@ -1,7 +1,7 @@
 var friendlyApp = angular.module("friendlyApp", ["ui.bootstrap"]);
 
 
-friendlyApp.controller("RecipesController", ["$scope", "$http", function($scope, $http) {
+friendlyApp.controller("RecipesController", ["$scope", "$http",  function($scope, $http) {
 
 
   $http.get('recipes.json').success(function(data, status, headers, config) {
@@ -20,8 +20,8 @@ friendlyApp.controller("RecipesController", ["$scope", "$http", function($scope,
 
 }]);
 
-friendlyApp.controller("RecipeController", ["$scope", "$http", function($scope, $http){
-  $http.get('.json').success(function(data, status, headers, config) {
+friendlyApp.controller("RecipeController", ["$scope", "$http", "$location", function($scope, $http){
+  $http.get($location.url()+'.json').success(function(data, status, headers, config) {
     $scope.recipe = data;
     console.log(data)
   });
