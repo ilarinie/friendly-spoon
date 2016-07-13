@@ -1,7 +1,7 @@
-var friendlyApp = angular.module("friendlyApp", []);
+var friendlyApp = angular.module("friendlyApp", ["ui.bootstrap"]);
 
 
-friendlyApp.controller("RecipesController", function($scope, $http) {
+friendlyApp.controller("RecipesController", ["$scope", "$http", function($scope, $http) {
 
 
   $http.get('recipes.json').success(function(data, status, headers, config) {
@@ -18,9 +18,9 @@ friendlyApp.controller("RecipesController", function($scope, $http) {
   }
 
 
-});
+}]);
 
-friendlyApp.controller("IngredientsController", function($scope, $http) {
+friendlyApp.controller("IngredientsController", ["$scope", "$http", function($scope, $http) {
 
 
   $http.get('/ingredients.json').success(function(data, status, headers, config) {
@@ -37,4 +37,4 @@ friendlyApp.controller("IngredientsController", function($scope, $http) {
     $scope.order = order;
   }
 
-});
+}]);
