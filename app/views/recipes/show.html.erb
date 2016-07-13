@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<div class="container">
+<div class="container" ng-app="friendlyApp" ng-controller="RecipeController">
   <div class="row">
     <div class="col-xs-12">
       <%= link_to 'Edit', edit_recipe_path(@recipe), class:'btn btn-warning edit', method: :get %>
