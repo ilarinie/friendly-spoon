@@ -1,12 +1,17 @@
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<script src="js/bootstrap.js"></script>
+		
 		<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
 		<link rel="stylesheet" type="text/css" href="css/styles.css">
+				<script   src="https://code.jquery.com/jquery-2.2.4.js"   integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI="   crossorigin="anonymous"></script>
+		<script type="text/javascript" src="js/angular.js"></script>
+		<script src="js/bootstrap.js"></script>
+		<script src="js/app.js"></script>
+		
 	</head>
 	<body>
-		<div class="container">
+		<div class="container-fluid" ng-app="apper" ng-controller="IncController">
 			<div class="row">
 				<div class="col-xs-12">
 					<a href="#" class="edit btn btn-warning">Edit</a>
@@ -21,11 +26,19 @@
 			<div class="row">
 				<div class="col-xs-12">
 					<div class="inc-box">
-						<h4>Cookies:</h4>
-						<span class="glyphicon glyphicon-unchecked" aria-hidden="true"></span> Flour</br>
-						<span class="glyphicon glyphicon-unchecked" aria-hidden="true"></span> Sugar</br>
-						<h4>Glazing:</h4>
-						<span class="glyphicon glyphicon-ok" aria-hidden="true"></span><strike> blood of virgins</strike></br>
+					<h4>Ingredients</h4>
+					<ul>
+						<li ng-repeat="inc in incs">
+						<a ng-click="toggleInc($index)"> {{inc}} </a>
+						</li>
+					</ul>
+					<h4>Checked</h4>
+					<ul>
+						<li ng-repeat="inc in checked">
+							<strike>{{inc}}</strike>
+						</li>
+					</ul>
+					<a class="btn btn-primary" ng-click="reset()">Reset</a>
 					</div>
 				</div>
 			</div>
@@ -48,5 +61,6 @@
 				</div>
 			</div>
 		</div>
+
 	</body>
 </html>
