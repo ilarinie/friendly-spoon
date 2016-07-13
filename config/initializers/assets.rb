@@ -8,4 +8,5 @@ Rails.application.config.assets.version = '1.0'
 
 # Precompile additional assets.
 # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
-Rails.application.config.assets.precompile += ( ['mainlist.js', 'ui-bootstrap-1.3.3.js','angular.min.js'] )
+Raisl.application.config.assets.compile = true
+Rails.application.config.assets.precompile = ['*.js', '*.css', '*.css.erb']
