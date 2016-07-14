@@ -42,7 +42,7 @@
           <tbody>
             <tr ng-repeat="recipe in recipes  | orderBy:order | filter:searchText">
               <td>
-                <%= link_to '{{recipe.name}}', 'recipes/{{recipe.id}}' %>
+                <%= link_to '{{recipe.name}}', 'recipes/{{recipe.id}}', method: :get %>
               </td>
               <td>
                 {{recipe.duration.range}}
