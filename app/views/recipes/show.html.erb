@@ -3,7 +3,9 @@
 <div class="container" ng-app="friendlyApp" ng-controller="RecipeController">
   <div class="row">
     <div class="col-xs-12">
+      <% if current_user = @recipe.user %>
       <%= link_to 'Edit', edit_recipe_path(@recipe), class:'btn btn-warning edit', method: :get %>
+      <% end %>
       <h2 class="title"><%= @recipe.name %></h2>
       <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
       <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
