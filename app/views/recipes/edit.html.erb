@@ -27,7 +27,7 @@
 <div ng-app="friendlyApp" ng-controller="IngredientsController">
 
 <%= bootstrap_form_for(@ingredient) do |f| %>
-<%= f.text_field :name,  "ng-model"=>"searchText",class:"form-control", "uib-typeahead"=>"ingredient as ingredient.name for ingredient in ingredients | filter:{name:$viewValue} | limitTo:8" %>
+<%= f.text_field :name, :autocomplete => :off, "ng-model"=>"searchText",class:"form-control", "uib-typeahead"=>"ingredient as ingredient.name for ingredient in ingredients | filter:{name:$viewValue} | limitTo:8" %>
 <%= f.submit %>
 <% end %>
 <table class="table">
