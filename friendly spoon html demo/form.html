@@ -1,0 +1,44 @@
+<!DOCTYPE html5>
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="css/styles.css">
+</head>
+<body>
+	<div class="container" ng-app="apper" ng-controller="IncController">
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Inc</th><th>amount</th><th>unit</th><th>Add</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="inc in incs" ng-form="incForm_{{$index}}">
+				
+				<td>{{inc.name}}</td>
+				<td>
+				<input class="form-control" type="number" name="amount" ng-model="recipeinc.amount">
+				</td>
+				<td>
+				<select name="unit_id" ng-model="recipeinc.unit_id" ng-options="unit for unit in units"></select>
+				<input type="hidden" name="inc_id" value="{{$index}}" ng-model="recipeinc.inc_id" />{{$index}}
+				</td>
+				<td>
+				<button type="submit" ng-click="submitMyForm(recipeinc, inc.id)">+</button>
+				</td>
+				<td>
+				<pre>recipeinc = {{recipeinc | json}}</pre>
+				{{recipeinc.amount}}
+				</td>
+			</tr>
+		</tbody>
+	</table>
+
+	<pre>recipeinc = {{recipeinc | json}}</pre>
+	</div>
+	<script src="https://code.jquery.com/jquery-2.2.4.js"   integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI="   crossorigin="anonymous"></script>
+	<script type="text/javascript" src="js/angular.js"></script>
+	<script src="js/bootstrap.js"></script>
+	<script src="js/app.js"></script>
+</body>
+</html>
