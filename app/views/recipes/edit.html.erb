@@ -2,29 +2,28 @@
 
 <%= render 'form' %>
 
+<div ng-app="friendlyApp" ng-controller="IngredientsController">
 <h2>Ingredients</h2>
 <table class="table">
-  <% @recipe_ingredients.each do |inc| %>
-  <tr>
+  <tr ng-repeat="inc in recipe.recipe_ingredients">
     <td>
-      <%= inc.ingredient %>
+      {{inc.ingredient.name}}
     </td>
     <td>
-      <%= inc.amount %>
+      {{inc.instruction}}
     </td>
     <td>
-      <%= inc.unit %>
+      {{inc.amount}}
     </td>
     <td>
-      <%= link_to 'Remove', recipe_ingredient_path(inc), method: :delete %>
+      {{inc.unit.name}}
     </td>
   </tr>
-    <% end %>
 </table>
 
 </ul>
 <h2>Add Ingredients</h2>
-<div ng-app="friendlyApp" ng-controller="IngredientsController">
+
 
 <%= bootstrap_form_for(@ingredient) do |f| %>
 <%= f.text_field :name, :autocomplete => :off, "ng-model"=>"searchText",class:"form-control", "uib-typeahead"=>"ingredient as ingredient.name for ingredient in ingredients | filter:{name:$viewValue} | limitTo:8" %>
@@ -36,27 +35,33 @@
       Ingredient
     </th>
     <th>
+      Instruction
+    </th>
+    <th>
+      Amount
+    </th>
+    <th>
+      Unit
+    </th>
+    <th>
       Add
     </th>
   </thead>
   <tbody>
-    <tr ng-repeat="ingredient in ingredients | filter:searchText">
-      <%= bootstrap_form_for(@recipe_ingredient) do |fo| %>
+    <tr ng-repeat="ingredient in ingredients | filter: searchText" ng-form>
+      <td>{{ingredient.name}}</td>
       <td>
-        {{ingredient.name}}
+        <input class="form-control" type="text" ng-model="recipeIngredient.instruction" />
       </td>
       <td>
-        <%= fo.number_field :amount %>
+      <input class="form-control" size="4" type="number" step="0.01" name="amount" ng-model="recipeIngredient.amount">
       </td>
       <td>
-        <%= fo.select :unit_id, options_from_collection_for_select(@units, :id, :to_s) %>
-        <%= fo.hidden_field :recipe_id, :value => @recipe.id %>
-        <%= fo.hidden_field :ingredient_id, :value => "{{ingredient.id}}" %>
+      <%= select_tag "units", options_from_collection_for_select(@units, :id, :to_s), :include_blank => false,"ng-model" => "recipeIngredient.unit_id", class:"form-control" %>
       </td>
       <td>
-        <%= fo.submit '+' %>
+      <button class="btn" type="submit" ng-click="submitForm(recipeIngredient, ingredient.id, $index)">+</button>
       </td>
-      <% end %>
     </tr>
   </tbody>
 </table>

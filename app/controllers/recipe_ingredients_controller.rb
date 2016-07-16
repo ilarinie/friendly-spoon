@@ -1,7 +1,6 @@
 class RecipeIngredientsController < ApplicationController
 
   def create
-    byebug
     @recipe_ingredient = RecipeIngredient.new(recipe_ingredient_params)
     @recipe_ingredient.save
     redirect_to :back
@@ -17,7 +16,7 @@ class RecipeIngredientsController < ApplicationController
   private
 
   def recipe_ingredient_params
-    params.require(:recipe_ingredient).permit(:unit_id, :amount, :ingredient_id, :recipe_id)
+    params.require(:recipe_ingredient).permit(:unit_id, :amount, :ingredient_id, :recipe_id, :instruction)
   end
 
 end

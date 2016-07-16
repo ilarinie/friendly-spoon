@@ -10,11 +10,11 @@ friendlyApp.controller("RecipesController", ["$scope", "$http", function($scope,
 
   var _searchText;
   $scope.searchText = undefined;
-  
- 
+
+
   $scope.order = 'name';
   $scope.orderDir = false;
-   
+
   $scope.sort_by = function(order) {
     $scope.order = order;
     $scope.orderDir = !$scope.orderDir;
@@ -49,6 +49,7 @@ friendlyApp.controller("RecipeController", ["$scope", "$http", function($scope, 
   };
 
 
+
 }]);
 
 friendlyApp.controller("IngredientsController", ["$scope", "$http", function($scope, $http) {
@@ -59,6 +60,13 @@ friendlyApp.controller("IngredientsController", ["$scope", "$http", function($sc
     console.log(data)
   });
 
+  var recipePath = window.location.pathname.substr(0,window.location.pathname.length-5)+".json"
+  console.log(recipePath)
+
+  $http.get(recipePath).success(function(data, status, headers, config){
+    $scope.recipe = data;
+  })
+
   var _searchText;
   $scope.searchText = undefined;
 
@@ -66,6 +74,17 @@ friendlyApp.controller("IngredientsController", ["$scope", "$http", function($sc
 
   $scope.sort_by = function(order) {
     $scope.order = order;
-  }
+  };
+
+  $scope.submitForm = function(recipeIngredient, ingredient_id, index){
+    recipeIngredient.ingredient_id = ingredient_id
+    recipeIngredient.recipe_id = $scope.recipe.id
+    var data = recipeIngredient;
+    $scope.recipeIngredient = {}
+    $http.post('/recipe_ingredients', data)
+    $http.get(recipePath).success(function(data, status, headers, config){
+      $scope.recipe = data;
+    })
+  };
 
 }]);
