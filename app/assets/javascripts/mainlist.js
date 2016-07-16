@@ -35,7 +35,7 @@ friendlyApp.controller("RecipeController", ["$scope", "$http", function($scope, 
 
     $http.get(path + ".json").then(function(result) {
       $scope.recipe = result.data
-      $scope.incs = $scope.recipe.ingredients;
+      $scope.incs = $scope.recipe.recipe_ingredients;
     });
 
   $scope.toggleInc = function(index) {

@@ -20,14 +20,14 @@
         <ul>
           <li ng-repeat="inc in incs">
             <a ng-click="toggleInc($index)">
-              {{inc.name}}
+              {{inc.ingredient.name}}  - {{inc.amount}} {{inc.unit.name}}
             </a>
           </li>
         </ul>
         <h4>Checked</h4>
         <ul>
           <li ng-repeat="inc in checked">
-            <strike>{{inc.name}}</strike>
+            <strike>{{inc.ingredient.name}} - {{inc.amount}} {{inc.unit.name}}</strike>
           </li>
         </ul>
         <a class="btn btn-primary" ng-click="reset()">Reset</a>
