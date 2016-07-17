@@ -2,7 +2,7 @@
 
 var friendlyApp = angular.module("friendlyApp", ["ui.bootstrap"]);
 
-friendlyApp.filter('search', function($filter){
+friendlyApp.filter('search', ["$filter" function($filter){
    return function(items, text){
       if (!text || text.length === 0)
         return items;
@@ -19,8 +19,8 @@ friendlyApp.filter('search', function($filter){
 
       return items
    };
-});
-friendlyApp.filter('incSearch', function($filter){
+}]);
+friendlyApp.filter('incSearch', ["$filter" function($filter){
    return function(items, text){
       if (!text || text.length === 0)
         return {};
@@ -37,7 +37,7 @@ friendlyApp.filter('incSearch', function($filter){
 
       return items
    };
-});
+}]);
 
 
 friendlyApp.controller("RecipesController", ["$scope", "$http", function($scope, $http) {
