@@ -20,8 +20,8 @@
   <div class="field">
     <%= f.select :duration_id, options_from_collection_for_select(@times, :id, :to_s) %>
   </div>
-  <div class="field">
-    <%= f.text_field :note %>
+  <div class="field notefield">
+    <%= f.text_area :note, "id" => "edit" %>
   </div>
   <div class="field">
     <%= f.check_box :public %>
@@ -29,4 +29,12 @@
   <div class="actions">
     <%= f.submit %>
   </div>
+  <script>
+  $(function() {
+    $('#edit').froalaEditor({
+      heightMin: 230,
+      heightMax: 230
+    })
+  });
+  </script>
 <% end %>

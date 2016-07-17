@@ -17,4 +17,8 @@
 //= require angular
 //= require ui-bootstrap-1.3.3
 //= require mainlist
-
+//= require froala_editor.min.js
+//= require plugins/link.min.js
+//= require plugins/lists.min.js
+//= require plugins/image.min.js
+//= require plugins/image_manager.min.js

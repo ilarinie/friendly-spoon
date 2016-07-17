@@ -13,4 +13,9 @@
  *= require_tree .
  *= require_self
  *= require rails_bootstrap_forms
+ *= require froala_editor.min.css
+ *= require froala_style.min.css
+ *= require font-awesome
+ *= require plugins/image_manager.min.css
+*= require plugins/image.min.css
  */

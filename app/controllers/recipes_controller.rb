@@ -1,8 +1,8 @@
 class RecipesController < ApplicationController
   before_action :set_recipe, only: [:show, :edit, :update, :destroy,:add_ingredient]
   before_action :set_ingredients, only: [:show, :edit]
-  before_action :ensure_that_signed_in, only: [:new, :edit, :create, :destroy, :update]
-
+  before_action :ensure_that_signed_in, only: [:new, :edit, :create, :destroy, :update, :index, :update]
+  before_action :ensure_that_public_recipe, only: [:show]
   # GET /recipes
   # GET /recipes.json
   def index
@@ -86,6 +86,10 @@ class RecipesController < ApplicationController
   end
 
   private
+
+    def ensure_that_public_recipe
+      @recipe.public
+    end
     # Use callbacks to share common setup or constraints between actions.
     def set_recipe
       @recipe = Recipe.find(params[:id])

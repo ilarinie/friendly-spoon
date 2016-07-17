@@ -42,12 +42,9 @@
       <h4>Difficulty:
         {{recipe.level.level}}
       <h4>What to do</h4>
-      <ol>
-        <li>Do this and that</li>
-        <li>Do that and this</li>
-        <li>Hail satan</li>
-        <li>Eat</li>
-      </ol>
+      <div class="fr-view inc-box">
+        <%= @recipe.note.html_safe %>
+      </div>
     </div>
   </div>
   <div class="row">
