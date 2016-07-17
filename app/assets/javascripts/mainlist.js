@@ -1,4 +1,4 @@
-angular.module('friendlyApp.search', ["search", "$filter"]).filter('search', function($filter){
+/*angular.module('friendlyApp.search').filter('search', function($filter){
    return function(items, text){
       if (!text || text.length === 0)
         return items;
@@ -15,9 +15,9 @@ angular.module('friendlyApp.search', ["search", "$filter"]).filter('search', fun
 
       return items
    };
-});
+});*/
 
-var friendlyApp = angular.module("friendlyApp", ["ui.bootstrap", "friendlyApp.search"]);
+var friendlyApp = angular.module("friendlyApp", ["ui.bootstrap"]);
 
 
 friendlyApp.controller("RecipesController", ["$scope", "$http", function($scope, $http) {
