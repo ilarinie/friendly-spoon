@@ -6,8 +6,10 @@
     <div class="row main-row">
       <div class="col-xs-11">
         <form role="form">
+        
           <label for="searchText" >Search recipes</label>
           <input type="text" autocomplete="off" ng-model="searchText" class="form-control" uib-typeahead="recipe as recipe.name for recipe in recipes | filter:{name:$viewValue} | limitTo:8">
+
         </form>
       </div>
     </div>
@@ -40,7 +42,7 @@
             </th>
           </thead>
           <tbody>
-            <tr ng-repeat="recipe in recipes  | orderBy:order:orderDir | filter:searchText">
+            <tr ng-repeat="recipe in recipes  | orderBy:order:orderDir | search:searchText">
               <td>
                 <%= link_to '{{recipe.name}}', 'recipes/{{recipe.id}}', method: :get %>
               </td>
