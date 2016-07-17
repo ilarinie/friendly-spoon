@@ -1,4 +1,8 @@
-/*angular.module('friendlyApp.search').filter('search', function($filter){
+
+
+var friendlyApp = angular.module("friendlyApp", ["ui.bootstrap"]);
+
+friendlyApp.filter('search', function($filter){
    return function(items, text){
       if (!text || text.length === 0)
         return items;
@@ -15,9 +19,25 @@
 
       return items
    };
-});*/
+});
+friendlyApp.filter('incSearch', function($filter){
+   return function(items, text){
+      if (!text || text.length === 0)
+        return {};
 
-var friendlyApp = angular.module("friendlyApp", ["ui.bootstrap"]);
+      // split search text on space
+      var searchTerms = text.split(' ');
+
+      // search for single terms.
+      // this reduces the item list step by step
+      searchTerms.forEach(function(term) {
+        if (term && term.length)
+          items = $filter('filter')(items, term);
+      });
+
+      return items
+   };
+});
 
 
 friendlyApp.controller("RecipesController", ["$scope", "$http", function($scope, $http) {
@@ -74,11 +94,14 @@ friendlyApp.controller("RecipeController", ["$scope", "$http", function($scope, 
 
 friendlyApp.controller("IngredientsController", ["$scope", "$http", function($scope, $http) {
 
+  function getIngredients(){
+    $http.get('/ingredients.json').success(function(data, status, headers, config) {
+      $scope.ingredients = data;
+      console.log(data)
+    });
+  }
+  getIngredients()
 
-  $http.get('/ingredients.json').success(function(data, status, headers, config) {
-    $scope.ingredients = data;
-    console.log(data)
-  });
 
   var recipePath = window.location.pathname.substr(0,window.location.pathname.length-5)+".json"
   console.log(recipePath)
@@ -89,6 +112,7 @@ friendlyApp.controller("IngredientsController", ["$scope", "$http", function($sc
 
   var _searchText;
   $scope.searchText = undefined;
+
 
   $scope.order = 'name';
 
@@ -106,13 +130,22 @@ friendlyApp.controller("IngredientsController", ["$scope", "$http", function($sc
     recipeIngredient.recipe_id = $scope.recipe.id
     var data = recipeIngredient;
     $scope.recipeIngredient = {}
-    $http.post('/recipe_ingredients', data)
-    $http.get(recipePath).success(function(data, status, headers, config){
-      $scope.recipe = data;
+    $scope.recing = true
+    $http.post('/recipe_ingredients', data).then(function(){
+      $http.get(recipePath).success(function(data, status, headers, config){
+        $scope.recipe = data;
+        $scope.recing = false
+      })
     })
-  };
-  $scope.submitIngredient = function(){
 
+  };
+  $scope.submitIngredient = function(naame){
+    $scope.ingredient = {}
+    $scope.ingredient.name = naame
+    var data = $scope.ingredient;
+    $http.post('/ingredients', $scope.ingredient).then(function(){
+      getIngredients()
+    })
   };
 
 }]);

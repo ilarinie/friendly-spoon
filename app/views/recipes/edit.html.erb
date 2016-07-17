@@ -25,10 +25,10 @@
 <h2>Add Ingredients</h2>
 
 
-<%= bootstrap_form_for(@ingredient) do |f| %>
-<%= f.text_field :name, :autocomplete => :off, "ng-model"=>"searchText",class:"form-control", "uib-typeahead"=>"ingredient as ingredient.name for ingredient in ingredients | filter:{name:$viewValue} | limitTo:8" %>
-<%= f.submit %>
-<% end %>
+<div ng-form>
+<input ng-model="searchText" class="form-control" uib-typeahead="ingredient as ingredient.name for ingredient in ingredients | filter:{name:$viewValue} | limitTo:8" />
+<button class="btn" ng-click="submitIngredient(searchText)" value="New Ingredient">Create</button>
+</div>
 <table class="table">
   <thead>
     <th>
@@ -47,8 +47,8 @@
       Add
     </th>
   </thead>
-  <tbody>
-    <tr ng-repeat="ingredient in ingredients | filter: searchText" ng-form>
+  <tbody ng-hide="search">
+    <tr ng-repeat="ingredient in ingredients | incSearch: searchText" ng-form>
       <td>{{ingredient.name}}</td>
       <td>
         <input class="form-control" type="text" ng-model="recipeIngredient.instruction" />
@@ -60,7 +60,7 @@
       <%= select_tag "units", options_from_collection_for_select(@units, :id, :to_s), :include_blank => false,"ng-model" => "recipeIngredient.unit_id", class:"form-control" %>
       </td>
       <td>
-      <button class="btn" type="submit" ng-click="submitForm(recipeIngredient, ingredient.id, $index)">+</button>
+      <button class="btn" type="submit" ng-click="submitForm(recipeIngredient, ingredient.id, $index)" ng-disabled="recing">+</button>
       </td>
     </tr>
   </tbody>
