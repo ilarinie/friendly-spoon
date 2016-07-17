@@ -2,7 +2,7 @@
 
 var friendlyApp = angular.module("friendlyApp", ["ui.bootstrap"]);
 
-friendlyApp.filter('search', ["$filter" function($filter){
+friendlyApp.filter('search', ["$filter", function($filter){
    return function(items, text){
       if (!text || text.length === 0)
         return items;
@@ -20,7 +20,7 @@ friendlyApp.filter('search', ["$filter" function($filter){
       return items
    };
 }]);
-friendlyApp.filter('incSearch', ["$filter" function($filter){
+friendlyApp.filter('incSearch', ["$filter", function($filter){
    return function(items, text){
       if (!text || text.length === 0)
         return {};
