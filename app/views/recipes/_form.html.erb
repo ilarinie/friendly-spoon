@@ -15,10 +15,10 @@
     <%= f.text_field :name %>
   </div>
   <div class="field">
-    <%= f.select :level_id, options_from_collection_for_select(@levels, :id, :to_s) %>
+    <%= f.collection_select :level_id, Level.all, :id, :to_s %>
   </div>
   <div class="field">
-    <%= f.select :duration_id, options_from_collection_for_select(@times, :id, :to_s) %>
+    <%= f.collection_select :duration_id, @durations, :id, :to_s %>
   </div>
   <div class="field notefield">
     <%= f.text_area :note, "id" => "edit" %>

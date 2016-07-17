@@ -28,12 +28,13 @@ class RecipesController < ApplicationController
 
   # GET /recipes/1/edit
   def edit
+    @levels = Level.all
+    @durations = Duration.all
     @ingredients = Ingredient.all
     @ingredient = Ingredient.new
     @recipe_ingredient = RecipeIngredient.new
     @units = Unit.all
-    @levels = Level.all
-    @times = Duration.all
+
   end
 
   # POST /recipes

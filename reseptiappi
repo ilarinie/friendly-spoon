@@ -24,7 +24,7 @@ Päänäkymä (reseptilista)
 
 	-hakutoiminto, hakee kaikista kentistä -> nimi, ainekset, note
 	-oletusjärjestys aakkoset, mahdollisuus myös raten mukaan
-	
+
 
 
 mittayksiköt
@@ -41,3 +41,8 @@ mittayksiköt
 	-oz 28,3495g
 	-pcs
 
+
+to fix:
+	aineosalista instruction
+	add without infos
+	duration reseptin editoinnissa

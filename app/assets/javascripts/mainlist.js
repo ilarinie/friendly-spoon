@@ -97,6 +97,11 @@ friendlyApp.controller("IngredientsController", ["$scope", "$http", function($sc
   };
 
   $scope.submitForm = function(recipeIngredient, ingredient_id, index){
+
+    //if the form is empty
+    if (recipeIngredient == null) {
+      recipeIngredient = {};
+    }
     recipeIngredient.ingredient_id = ingredient_id
     recipeIngredient.recipe_id = $scope.recipe.id
     var data = recipeIngredient;
@@ -105,6 +110,9 @@ friendlyApp.controller("IngredientsController", ["$scope", "$http", function($sc
     $http.get(recipePath).success(function(data, status, headers, config){
       $scope.recipe = data;
     })
+  };
+  $scope.submitIngredient = function(){
+
   };
 
 }]);
