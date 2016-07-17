@@ -1,5 +1,5 @@
 class RecipeIngredientsController < ApplicationController
-  before_action [:ensure_that_signed_in]
+  before_action :ensure_that_signed_in
 
   def create
     @recipe_ingredient = RecipeIngredient.new(recipe_ingredient_params)
