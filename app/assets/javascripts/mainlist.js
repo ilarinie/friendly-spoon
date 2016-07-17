@@ -1,4 +1,4 @@
-angular.module('friendlyApp.search', ["$filter"]).filter('search', function($filter){
+angular.module('friendlyApp.search', ["search", "$filter"]).filter('search', function($filter){
    return function(items, text){
       if (!text || text.length === 0)
         return items;
