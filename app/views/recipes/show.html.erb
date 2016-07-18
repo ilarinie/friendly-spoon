@@ -20,7 +20,7 @@
       <div class="inc-box">
         <h4>Ingredients</h4>
         <ul style="list-style:none">
-          <li ng-repeat="inc in incs">
+          <li ng-repeat="inc in incs | orderBy:'id' ">
             <a ng-click="toggleInc($index)">
               <span class="glyphicon glyphicon-unchecked" aria-hidden="true"></span>
             </a>
