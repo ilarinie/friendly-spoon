@@ -221,13 +221,11 @@ friendlyApp.controller("IngredientsController", ["$scope", "$http", function($sc
       getIngredients()
     })
   };
-  $scope.removeRecipeIngredient = function(id){
-  	$http.delete('/recipe_ingredients/'+id).success(function(){
-  		      $http.get(recipePath).success(function(data, status, headers, config){
-			 $scope.recipe = data;
-			  $scope.recing = false
-			  })
-  	})		
+  $scope.removeRecipeIngredient = function(id, index){
+  	$http.delete('/recipe_ingredients/'+id).then(function(){
+  		$scope.recipe.recipe_ingredients.splice(index, 1)
+  	})
+  	
   };
 
 }]);
