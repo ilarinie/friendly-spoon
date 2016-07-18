@@ -42,7 +42,7 @@ gem 'bootstrap_form'
 gem 'bcrypt', '~> 3.1.7'
 
 #text-editor
-gem "wysiwyg-rails"
+gem 'ckeditor'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

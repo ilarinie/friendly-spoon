@@ -73,6 +73,9 @@ friendlyApp.controller("RecipeController", ["$scope", "$http", function($scope, 
     $scope.incs = [];
     $scope.checked = [];
 
+    $scope.doubleButton = "Double!";
+    $scope.divideButton = "Divide!";
+
     $http.get(path + ".json").then(function(result) {
       $scope.recipe = result.data
       $scope.incs = $scope.recipe.recipe_ingredients;
@@ -82,10 +85,51 @@ friendlyApp.controller("RecipeController", ["$scope", "$http", function($scope, 
     $scope.checked.push($scope.incs[index]);
     $scope.incs.splice(index, 1);
   };
+  $scope.unToggleInc = function(index) {
+    $scope.incs.push($scope.checked[index]);
+    $scope.checked.splice(index, 1);
+  };
 
   $scope.reset = function() {
     $scope.incs.push.apply($scope.incs, $scope.checked);
     $scope.checked = [];
+  };
+  $scope.divide = function(){
+    var length = $scope.incs.length
+
+    for (var i = 0; i < length; i++){
+      if (!$scope.incs[i].amount){}
+      else{
+        if ($scope.doubled){
+            $scope.incs[i].amount = $scope.incs[i].amount / 4
+        }else {
+            $scope.incs[i].amount = $scope.incs[i].amount / 2
+        }
+
+      }
+    }
+    $scope.divideButton = "Divided!";
+    $scope.divided = true;
+    $scope.doubled = false;
+    $scope.doubleButton = "Double!";
+  };
+  $scope.double = function(){
+    var length = $scope.incs.length
+
+    for (var i = 0; i < length; i++){
+      if (!$scope.incs[i].amount){}
+      else{
+        if ($scope.divided){
+          $scope.incs[i].amount = $scope.incs[i].amount * 4
+        }else{
+          $scope.incs[i].amount = $scope.incs[i].amount * 2
+        }
+      }
+    }
+    $scope.divideButton = "Divide!";
+    $scope.divided = false;
+    $scope.doubled = true;
+    $scope.doubleButton = "Doubled!";
   };
 
 

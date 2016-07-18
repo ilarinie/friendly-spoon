@@ -14,20 +14,27 @@
   </div>
   <div class="row">
     <div class="col-xs-12">
-      <h4>Ingredients</h4>
+      <h4 style="float:left;">Ingredients</h4>
+      <button class="btn calcBtn" ng-click="divide()" ng-disabled="divided">{{divideButton}}</button>
+      <button class="btn calcBtn" ng-click="double()" ng-disabled="doubled">{{doubleButton}}</button>
       <div class="inc-box">
         <h4>Ingredients</h4>
-        <ul>
+        <ul style="list-style:none">
           <li ng-repeat="inc in incs">
             <a ng-click="toggleInc($index)">
-              {{inc.ingredient.name}}  - {{inc.amount}} {{inc.unit.name}}
+              <span class="glyphicon glyphicon-unchecked" aria-hidden="true"></span>
             </a>
+              {{inc.amount}} {{inc.unit.name}} - {{inc.ingredient.name}} - {{inc.instruction}}
           </li>
         </ul>
         <h4>Checked</h4>
-        <ul>
+        <ul style="list-style:none">
           <li ng-repeat="inc in checked">
+            <a ng-click="unToggleInc($index)">
+            <span class="glyphicon glyphicon-check" aria-hidden="true"></span>
+            </a>
             <strike>{{inc.ingredient.name}} - {{inc.amount}} {{inc.unit.name}}</strike>
+
           </li>
         </ul>
         <a class="btn btn-primary" ng-click="reset()">Reset</a>
