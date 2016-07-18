@@ -16,7 +16,7 @@ class RecipesController < ApplicationController
   def show
     @recipe_ingredients = RecipeIngredient.where(recipe_id:@recipe.id)
     @levels = Level.all
-    @times = Duration.all
+    @durations = Duration.all
   end
 
   # GET /recipes/new
