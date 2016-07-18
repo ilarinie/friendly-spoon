@@ -64,6 +64,10 @@ friendlyApp.controller("RecipesController", ["$scope", "$http", function($scope,
 friendlyApp.controller("RecipeController", ["$scope", "$http", function($scope, $http) {
 
   var path = window.location.pathname
+  if (path.charAt(path.length-1) == '/'){
+		//remove possible slash at the end of path
+		path = path.substr(0, path.length-1)
+  }
   var inc = [];
   var checked = [];
 
