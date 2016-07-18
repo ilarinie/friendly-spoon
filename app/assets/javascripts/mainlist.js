@@ -94,42 +94,41 @@ friendlyApp.controller("RecipeController", ["$scope", "$http", function($scope, 
   };
   $scope.divide = function(){
       if ($scope.divided){
-         multiplyAmounts($scope.incs, 2)
+         multiplyAmounts($scope.incs, 2);
          $scope.divided = false;
          $scope.doubled = false;
-         $scope.divideButton = "Divide!"
-         $scope.doubleButton = "Double!"
+         $scope.divideButton = "Divide!";
+         $scope.doubleButton = "Double!";
       }
       else if ($scope.doubled){
-         divideAmounts($scope.incs, 4)
+         divideAmounts($scope.incs, 4);
          $scope.divided = true;
          $scope.doubled = false;
-         $scope.divideButton = "Reset"
-         $scope.doubleButton = "Double!"
+         $scope.divideButton = "Reset";
+         $scope.doubleButton = "Double!";
       }else{
-         divideAmounts($scope.incs, 2)
+         divideAmounts($scope.incs, 2);
          $scope.divided = true;
          $scope.doubled = false;
-         $scope.divideButton = "Reset"
-         $scope.doubleButton = "Double!"
+         $scope.divideButton = "Reset";
+         $scope.doubleButton = "Double!";
       }
   };
   $scope.double = function(){
       if ($scope.doubled){
-         divideAmounts($scope.incs, 2)
+         divideAmounts($scope.incs, 2);
          $scope.divided = false;
          $scope.doubled = false;
          $scope.divideButton = "Divide!"
          $scope.doubleButton = "Double!"
-      }
-      else if ($scope.divided){
-         multiplyAmounts($scope.incs, 4)
+      }else if ($scope.divided){
+         multiplyAmounts($scope.incs, 4);
          $scope.divided = false;
          $scope.doubled = true;
          $scope.divideButton = "Divide!"
          $scope.doubleButton = "Reset"
       }else{
-         multiplyAmounts($scope.incs, 2)
+         multiplyAmounts($scope.incs, 2);
          $scope.divided = false;
          $scope.doubled = true;
          $scope.divideButton = "Divide!"
@@ -139,16 +138,18 @@ friendlyApp.controller("RecipeController", ["$scope", "$http", function($scope, 
   function divideAmounts(items, divider){
      var length = items.length
      for (var i = 0; i > length){
-        if (items[i].amount)
+        if (items[i].amount){
         items[i].amount = items[i].amount / divider
+        }
      }
      return items;
   }
   function multiplyAmounts(items, multiplier){
      var length = items.length
      for (var i = 0; i > length){
-        if (items[i].amount)
+        if (items[i].amount){
         items[i].amount = items[i].amount * multiplier
+        }
      }
      return items;
   }
