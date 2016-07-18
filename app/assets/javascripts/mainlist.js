@@ -139,7 +139,7 @@ friendlyApp.controller("RecipeController", ["$scope", "$http", function($scope, 
   };
   function divideAmounts(items, divider){
      var length = items.length
-     for (var i = 0; i > length; i++){
+     for (var i = 0; i < length; i++){
         if (items[i].hasOwnProperty("amount")){
         items[i].amount = items[i].amount / divider
         }
@@ -148,7 +148,7 @@ friendlyApp.controller("RecipeController", ["$scope", "$http", function($scope, 
   }
   function multiplyAmounts(items, multiplier){
      var length = items.length
-     for (var i = 0; i > length; i++){
+     for (var i = 0; i < length; i++){
         if (items[i].hasOwnProperty("amount")){
         items[i].amount = items[i].amount * multiplier
         }
