@@ -96,20 +96,20 @@ friendlyApp.controller("RecipeController", ["$scope", "$http", function($scope, 
   };
   $scope.divide = function(){
       if ($scope.divided){
-         multiplyAmounts($scope.incs, 2);
+         $scope.incs = multiplyAmounts($scope.incs, 2);
          $scope.divided = false;
          $scope.doubled = false;
          $scope.divideButton = "Divide!";
          $scope.doubleButton = "Double!";
       }
       else if ($scope.doubled){
-         divideAmounts($scope.incs, 4);
+         $scope.incs = divideAmounts($scope.incs, 4);
          $scope.divided = true;
          $scope.doubled = false;
          $scope.divideButton = "Reset";
          $scope.doubleButton = "Double!";
       }else{
-         divideAmounts($scope.incs, 2);
+         $scope.incs = divideAmounts($scope.incs, 2);
          $scope.divided = true;
          $scope.doubled = false;
          $scope.divideButton = "Reset";
@@ -118,19 +118,19 @@ friendlyApp.controller("RecipeController", ["$scope", "$http", function($scope, 
   };
   $scope.double = function(){
       if ($scope.doubled){
-         divideAmounts($scope.incs, 2);
+         $scope.incs = divideAmounts($scope.incs, 2);
          $scope.divided = false;
          $scope.doubled = false;
          $scope.divideButton = "Divide!"
          $scope.doubleButton = "Double!"
       }else if ($scope.divided){
-         multiplyAmounts($scope.incs, 4);
+         $scope.incs = multiplyAmounts($scope.incs, 4);
          $scope.divided = false;
          $scope.doubled = true;
          $scope.divideButton = "Divide!"
          $scope.doubleButton = "Reset"
       }else{
-         multiplyAmounts($scope.incs, 2);
+         $scope.incs = multiplyAmounts($scope.incs, 2);
          $scope.divided = false;
          $scope.doubled = true;
          $scope.divideButton = "Divide!"
@@ -139,7 +139,7 @@ friendlyApp.controller("RecipeController", ["$scope", "$http", function($scope, 
   };
   function divideAmounts(items, divider){
      var length = items.length
-     for (var i = 0; i > length){
+     for (var i = 0; i > length; i++){
         if (items[i].hasOwnProperty("amount"){
         items[i].amount = items[i].amount / divider
         }
@@ -148,7 +148,7 @@ friendlyApp.controller("RecipeController", ["$scope", "$http", function($scope, 
   }
   function multiplyAmounts(items, multiplier){
      var length = items.length
-     for (var i = 0; i > length){
+     for (var i = 0; i > length; i++){
         if (items[i].hasOwnProperty("amount"){
         items[i].amount = items[i].amount * multiplier
         }
