@@ -72,8 +72,10 @@ friendlyApp.controller("RecipeController", ["$scope", "$http", function($scope, 
     $scope.checked = [];
 
     $scope.doubleButton = "Double!";
+    $scope.doubled = false;
     $scope.divideButton = "Divide!";
-
+   $scope.divided = false;
+   
     $http.get(path + ".json").then(function(result) {
       $scope.recipe = result.data
       $scope.incs = $scope.recipe.recipe_ingredients;
