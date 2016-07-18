@@ -95,42 +95,65 @@ friendlyApp.controller("RecipeController", ["$scope", "$http", function($scope, 
     $scope.checked = [];
   };
   $scope.divide = function(){
-    var length = $scope.incs.length
-
-    for (var i = 0; i < length; i++){
-      if (!$scope.incs[i].amount){}
-      else{
-        if ($scope.doubled){
-            $scope.incs[i].amount = $scope.incs[i].amount / 4
-        }else {
-            $scope.incs[i].amount = $scope.incs[i].amount / 2
-        }
-
+      if ($scope.divided){
+         multiplyAmounts($scope.incs, 2)
+         $scope.divided = false;
+         $scope.doubled = false;
+         $scope.divideButton = "Divide!"
+         $scope.doubleButton = "Double!"
       }
-    }
-    $scope.divideButton = "Divided!";
-    $scope.divided = true;
-    $scope.doubled = false;
-    $scope.doubleButton = "Double!";
+      else if ($scope.doubled){
+         divideAmounts($scope.incs, 4)
+         $scope.divided = true;
+         $scope.doubled = false;
+         $scope.divideButton = "Reset"
+         $scope.doubleButton = "Double!"
+      }else{
+         divideAmounts($scope.incs, 2)
+         $scope.divided = true;
+         $scope.doubled = false;
+         $scope.divideButton = "Reset"
+         $scope.doubleButton = "Double!"
+      }
   };
   $scope.double = function(){
-    var length = $scope.incs.length
-
-    for (var i = 0; i < length; i++){
-      if (!$scope.incs[i].amount){}
-      else{
-        if ($scope.divided){
-          $scope.incs[i].amount = $scope.incs[i].amount * 4
-        }else{
-          $scope.incs[i].amount = $scope.incs[i].amount * 2
-        }
+      if ($scope.doubled){
+         divideAmounts($scope.incs, 2)
+         $scope.divided = false;
+         $scope.doubled = false;
+         $scope.divideButton = "Divide!"
+         $scope.doubleButton = "Double!"
       }
-    }
-    $scope.divideButton = "Divide!";
-    $scope.divided = false;
-    $scope.doubled = true;
-    $scope.doubleButton = "Doubled!";
+      else if ($scope.divided){
+         multiplyAmounts($scope.incs, 4)
+         $scope.divided = false;
+         $scope.doubled = true;
+         $scope.divideButton = "Divide!"
+         $scope.doubleButton = "Reset"
+      }else{
+         multiplyAmounts($scope.incs, 2)
+         $scope.divided = false;
+         $scope.doubled = true;
+         $scope.divideButton = "Divide!"
+         $scope.doubleButton = "Reset"
+      }
   };
+  function divideAmounts(items, divider){
+     var length = items.length
+     for (var i = 0; i > length){
+        if (items[i].amount)
+        items[i].amount = items[i].amount / divider
+     }
+     return items;
+  }
+  function multiplyAmounts(items, multiplier){
+     var length = items.length
+     for (var i = 0; i > length){
+        if (items[i].amount)
+        items[i].amount = items[i].amount * multiplier
+     }
+     return items;
+  }
 
 
 
