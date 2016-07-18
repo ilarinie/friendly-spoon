@@ -177,10 +177,12 @@ friendlyApp.controller("IngredientsController", ["$scope", "$http", function($sc
 
   var recipePath = window.location.pathname.substr(0,window.location.pathname.length-5)+".json"
   console.log(recipePath)
-
+  function getRecipe(){
   $http.get(recipePath).success(function(data, status, headers, config){
     $scope.recipe = data;
-  })
+  });
+  }
+  getRecipe()
 
   var _searchText;
   $scope.searchText = undefined;
@@ -218,6 +220,11 @@ friendlyApp.controller("IngredientsController", ["$scope", "$http", function($sc
     $http.post('/ingredients', $scope.ingredient).then(function(){
       getIngredients()
     })
+  };
+  $scope.removeRecipeIngredient = function(id){
+  	$http.post('/recipe_ingredients/'+id).then(function(){
+  		getRecipe()
+  	})		
   };
 
 }]);
