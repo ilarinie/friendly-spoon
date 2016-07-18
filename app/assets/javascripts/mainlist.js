@@ -1,5 +1,3 @@
-
-
 var friendlyApp = angular.module("friendlyApp", ["ui.bootstrap"]);
 
 friendlyApp.filter('search', ["$filter", function($filter){
