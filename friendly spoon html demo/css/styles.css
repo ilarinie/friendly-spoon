@@ -28,11 +28,10 @@
 	margin-top: 34px;
 	width:130%;
 }
-.headings {
-	color: #cc6699;
+.img-div {
 }
 .recipe-img {
-	margin-bottom: 10px;
+	margin-top: 10px;
 	border-radius: 25px;
 }
 ul {
@@ -47,10 +46,10 @@ li {
 .main-heading{
 	margin-top: 25px;
 	margin-bottom: 0px;
+	color: #cc6699;
 }
 .sub-heading {
-	margin-top: 25px;
-
+	color: black;
 }
 .header-btn{
 	margin-top: 32px;
@@ -59,14 +58,21 @@ li {
 	padding-bottom: 1px;
 	width: 65px;
 	color: white;
+	background-color: #dddddd;
 	border-radius: 10px 10px 0px 0px
 }
+.header-btn:hover{
+	
+	color: white;
+}
 .instruction-div {
-	margin-top: -20px;
+	margin-top: -5px;
 }
 .instruction-text{
 	
 }
+
+
 .edit {
 	float:right;
 	margin-top:25px;
