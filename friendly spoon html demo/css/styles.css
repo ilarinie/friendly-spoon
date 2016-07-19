@@ -1,24 +1,55 @@
-.row-centered {
-    text-align:center;
+/* vaakasuora viiva pääotsikon ja aliotsikoiden alla */
+.hline {
+	margin-top: 0px;
+	width:100%;
 }
-.col-centered {
-    display:inline-block;
-    float:none;
-    /* reset the text-align */
-    text-align:left;
-    /* inline-block space fix */
-    margin-right:-4px;
+/* vaakasuora kikkailuviiva desktopnäkymässä kuvien alla */
+.subline {
+	margin-top: 34px;
+	width:130%;
 }
-.inc-box {
-	border: 1px solid black;
-	margin-top:10px;
-	padding: 10px;
+/* kuvat reseptinäkymässä */
+.recipe-img {
+	margin-top: 10px;
+	border-radius: 25px;
+}
+/* Listan tyylit, ei palloja eikä jäätävää sisennystä */
+ul {
+	list-style-type: none;
+}
+li {
+	margin-left: -20px;
+}
+/* pääotsikon tyylit, lähemmäs viivaa */
+.main-heading{
+	margin-top: 25px;
+	margin-bottom: 0px;
+	color: #cc6699;
+}
+/* pääotsikkorivin nappuloiden tyylit */
+.header-btn{
+	margin-top: 32px;
+	margin-bottom: 0px;
+	padding-top: 1px;
+	padding-bottom: 1px;
+	width: 65px;
+	color: white;
+	background-color: #dddddd;
+	border-radius: 10px 10px 0px 0px
+}
+.header-btn:hover{
+	color: white;
+}
+/* aliotsikkojen tyylit */
+.sub-heading {
+	color: black;
+}
+/* Valmistusohjeen divider, vähän ylemmäs kuin norm */
+.instruction-div {
+	margin-top: -5px;
 }
 
-.edit {
-	float:right;
-	margin-top:25px;
-}
-.main-row {
-	margin-top: 10px;
+/* Kellot "Time"-otsikon alla */
+.timespan {
+	margin-left: 3px;
 }
