@@ -15,6 +15,58 @@
 	padding: 10px;
 }
 
+.border {
+	border: 1px solid black;
+}
+
+.hline {
+	margin-top: 0px;
+	width:100%;
+	
+}
+.subline {
+	margin-top: 34px;
+	width:130%;
+}
+.headings {
+	color: #cc6699;
+}
+.recipe-img {
+	margin-bottom: 10px;
+	border-radius: 25px;
+}
+ul {
+	list-style-type: none;
+}
+li {
+	margin-left: -20px;
+}
+.heading-div{
+
+}
+.main-heading{
+	margin-top: 25px;
+	margin-bottom: 0px;
+}
+.sub-heading {
+	margin-top: 25px;
+
+}
+.header-btn{
+	margin-top: 32px;
+	margin-bottom: 0px;
+	padding-top: 1px;
+	padding-bottom: 1px;
+	width: 65px;
+	color: white;
+	border-radius: 10px 10px 0px 0px
+}
+.instruction-div {
+	margin-top: -20px;
+}
+.instruction-text{
+	
+}
 .edit {
 	float:right;
 	margin-top:25px;
