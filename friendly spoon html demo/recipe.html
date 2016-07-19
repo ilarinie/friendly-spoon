@@ -6,8 +6,10 @@
 </head>
 
 <body>
+	<!-- main recipe container -->
     <div class="container-fluid" ng-app="apper" ng-controller="IncController">
         <div class="col-sm-12 col-md-12 maindiv">
+			<!-- Yläotsikkorivi -->
             <div class="row">
                 <div class="col-sm-7 col-md-7  heading-div">
                     <h3 class="main-heading">{{recipe.name}}</h3>
@@ -22,32 +24,37 @@
                 </div>
 
             </div>
+			<!-- END yläotsikkorivi -->
             <hr class="hline" />
+			
+			<!-- Alempi rivi, kuvat, aineosat, muut tiedot -->
             <div class="row">
                 <div class="col-md-2 img-div">
                     <img class="recipe-img" src="cake.png">
                     <img class=" recipe-img" src="cake.png">
                     <img class="recipe-img" src="cake.png">
                 </div>
-                
+                <!-- muuttuva näkymä aineosat, muut tiedot <-> notesit -->
                     <div ng-switch on="noteSwitchButton" class="animate-switch-container">
 						<div class="animate-switch" ng-switch-when="Notes">
+						<!-- ainesosanäkymä -->
                         <div class="col-sm-5 col-md-5 ">
                             <h4 class="sub-heading">Ingredients I need</h4>
                             <hr class="hline" />
                             <ul>
                                 <li ng-repeat="inc in incs | orderBy:'id'">
-                                    <input type="checkbox" ng-click="toggleInc($index)">{{inc.amount}} {{inc.unit.name}} {{inc.ingredient.name}}</input>
+                                    <input type="checkbox" ng-click="toggleInc($index)">&#09;{{inc.amount}} {{inc.unit.name}} {{inc.ingredient.name}}</input>
                                 </li>
                             </ul>
                             <h4 class="sub-heading">Ingredients I have</h4>
                             <hr class="hline" />
                             <ul>
                                 <li ng-repeat="inc in checked">
-                                    <input type="checkbox" ng-click="unToggleInc($index)" checked> <strike>{{inc.amount}} {{inc.unit.name}} {{inc.ingredient.name}}</strike></input>
+                                    <input type="checkbox" ng-click="unToggleInc($index)" checked>&#09;<strike>{{inc.amount}} {{inc.unit.name}} {{inc.ingredient.name}}</strike></input>
                                 </li>
                             </ul>
                         </div>
+						<!-- muut tiedot -näkymä -->
                         <div class="col-sm-5 col-md-5 ">
                             <h4 class="sub-heading">Average Rating</h4>
                             <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
@@ -56,14 +63,19 @@
                             <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
                             <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
                             <h4 class="headings sub-heading">Difficulty</h4>
-                            <span class="label label-danger">Difficult</span>
+							<div ng-switch on="recipe.level.level">
+                            <span ng-switch-when="Difficult" class="label label-danger">Difficult</span>
+							<span ng-switch-when="Easy" class="label label-success">Easy</span>
+							<span ng-switch-when="Medium" class="label label-warning">Medium</span>
+							</div>
                             <h4 class="headings sub-heading">Time</h4>
-                            <span class="glyphicon glyphicon-time"></span>
-                            <span class="glyphicon glyphicon-time"></span>
-                            <span class="glyphicon glyphicon-time"></span>
+                            <span ng-repeat="i in times.slice(0,recipe.duration.id) track by $index" class="glyphicon glyphicon-time timespan"></span>
                         </div>
+						<!-- END muut tiedot -näkymä -->
 						</div>
-						<div class="animate-switch" ng-switch-when="Recipe View">
+						<!-- END oletusreseptinäkymä -->
+						<!-- notes-näkymä -->
+						<div class="animate-switch" ng-switch-when="Recipe">
 							<div class="col-sm-10 col-md-10">
 								<h4 class="sub-heading">Notes</h4>
 								<hr class="hline" />
@@ -72,13 +84,19 @@
 								</ol>
 							</div>
 						</div>
+						<!-- END notes-näkymä -->
                     </div>
-                
+					<!-- END muuttuva näkymä-containeri -->
             </div>
-            <div class="row">
+			<!-- END Alempi rivi -->
+			<!-- alarivi, jossa valmistusohje -->
+            <div ng-show="noteSwitchButton == 'Notes'" class="row">
+				<!-- tyhjä div desktop-näkymää varten, ei näy pienessä tai mobiilissa -->
                 <div class="col-md-2 hidden-sm hidden-xs">
                     <hr class="subline" />
                 </div>
+				<!-- END Tyhjä desktop div -->
+				<!-- valmistusohjenäkymä -->
                 <div class="col-sm-7 col-md-7 instruction-div">
 
                     <h4 class="sub-heading">Instruction</h4>
@@ -91,10 +109,13 @@
                         </ol>
                     </p>
                 </div>
+				<!-- END valmistusohjenäkymä -->
             </div>
+			<!-- END alin rivi -->
         </div>
+		<!-- END mainDiv -->
     </div>
-
+	<!-- END main container -->
 
 
     <script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
