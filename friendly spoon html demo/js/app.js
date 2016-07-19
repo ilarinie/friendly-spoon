@@ -12,8 +12,8 @@ apper.filter('setDecimal', function($filter) {
 });
 
 apper.controller("IncController", function($scope, $location) {
-       $scope.units = ["cup", "dl", "l"];
-   
+    $scope.units = ["cup", "dl", "l"];
+	$scope.times = new Array(5);
 
     $scope.recipe = {
         id: 5,
@@ -208,7 +208,7 @@ apper.controller("IncController", function($scope, $location) {
 
 	$scope.noteSwitch = function(){
 		if ($scope.noteSwitchButton == "Notes"){
-			$scope.noteSwitchButton = "Recipe View";
+			$scope.noteSwitchButton = "Recipe";
 		}else {
 			$scope.noteSwitchButton = "Notes"
 		}
