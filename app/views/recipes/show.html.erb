@@ -1,60 +1,154 @@
-<div class="container" ng-app="friendlyApp" ng-controller="RecipeController">
-  <div class="row">
-    <div class="col-xs-12 col-md-8">
-      <% if current_user = @recipe.user %>
-      <%= link_to 'Edit', edit_recipe_path(@recipe), class:'btn btn-warning edit', method: :get %>
-      <% end %>
-      <h2 class="title"><%= @recipe.name %></h2>
-      <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-      <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-      <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-      <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-      <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-xs-12 col-md-8">
-      <h4 style="float:left;">Ingredients</h4>
-      <button class="btn calcBtn" ng-click="divide()">{{divideButton}}</button>
-      <button class="btn calcBtn" ng-click="double()">{{doubleButton}}</button>
-      <div class="inc-box">
-        <h4>Ingredients</h4>
-        <ul style="list-style:none">
-          <li ng-repeat="inc in incs | orderBy:'id' ">
-            <a ng-click="toggleInc($index)">
-              <span class="glyphicon glyphicon-unchecked" aria-hidden="true"></span>
-            </a>
-              {{inc.amount}} {{inc.unit.name}} - {{inc.ingredient.name}} - {{inc.instruction}}
-          </li>
-        </ul>
-        <h4>Checked</h4>
-        <ul style="list-style:none">
-          <li ng-repeat="inc in checked">
-            <a ng-click="unToggleInc($index)">
-            <span class="glyphicon glyphicon-check" aria-hidden="true"></span>
-            </a>
-            <strike>{{inc.ingredient.name}} - {{inc.amount}} {{inc.unit.name}}</strike>
+<!-- main recipe container -->
+  <div class="container-fluid" ng-app="friendlyApp" ng-controller="RecipeController">
+      <div class="col-sm-10 col-md-10 maindiv col-centered">
+    <!-- Yläotsikkorivi -->
+          <div class="row">
+              <div class="col-sm-5 col-md-5  heading-div">
+                  <h3 class="main-heading">{{recipe.name}}</h3>
 
-          </li>
-        </ul>
-        <a class="btn btn-primary" ng-click="reset()">Reset</a>
+              </div>
+              <div class="col-sm-5 col-md-5  heading-div">
+                  <a class="btn header-btn" ng-click="divide()">{{divideButton}}</a>
+                  <a class="btn header-btn" ng-click="double()">{{doubleButton}}</a>
+                  <a class="btn header-btn" ng-click="noteSwitch()">{{noteSwitchButton}}</a>
+                  <%= link_to 'Edit', edit_recipe_path(@recipe), class:'btn header-btn', method: :get %>
+
+              </div>
+
+          </div>
+    <!-- END yläotsikkorivi -->
+          <hr class="hline" />
+
+    <!-- Alempi rivi, kuvat, aineosat, muut tiedot -->
+          <div class="row">
+              <div class="col-md-2 img-div hidden-xs hidden-sm">
+                  <img class="recipe-img" src="/cake.png">
+                  <img class=" recipe-img" src="/cake.png">
+                  <img class="recipe-img-last" src="/cake.png">
+              </div>
+              <!-- muuttuva näkymä aineosat, muut tiedot <-> notesit -->
+                  <div ng-switch on="noteSwitchButton" class="animate-switch-container">
+          <div class="animate-switch" ng-switch-when="Notes">
+          <!-- ainesosanäkymä -->
+                      <div class="col-sm-4 col-md-4 ">
+                          <h4 class="sub-heading">Ingredients I need</h4>
+                          <hr class="hline" />
+                          <ul>
+                              <li ng-repeat="inc in incs | orderBy:'id'">
+                                  <input type="checkbox" ng-click="toggleInc($index)">&#09;{{inc.amount}} {{inc.unit.name}} {{inc.ingredient.name}}</input>
+                              </li>
+                          </ul>
+                          <h4 class="sub-heading">Ingredients I have</h4>
+                          <hr class="hline" />
+                          <ul>
+                              <li ng-repeat="inc in checked">
+                                  <input type="checkbox" ng-click="unToggleInc($index)" checked>&#09;<strike>{{inc.amount}} {{inc.unit.name}} {{inc.ingredient.name}}</strike></input>
+                              </li>
+                          </ul>
+                      </div>
+          <!-- muut tiedot -näkymä -->
+                      <div class="col-sm-4 col-md-4 ">
+                          <h4 class="sub-heading">Average Rating</h4>
+                          <uib-rating ng-model="recipe.ratingaverage" max="10" read-only="true" on-hover="hoveringOver(value)" on-leave="overStar = null" aria-labelledby="default-rating"></uib-rating>
+                          <h4 class="headings sub-heading">Difficulty</h4>
+            <div ng-switch on="recipe.level.level">
+                          <span ng-switch-when="Difficult" class="label label-danger">Difficult</span>
+            <span ng-switch-when="Easy" class="label label-success">Easy</span>
+            <span ng-switch-when="Medium" class="label label-warning">Medium</span>
+            </div>
+                          <h4 class="headings sub-heading">Time</h4>
+                          <span ng-repeat="i in times.slice(0,recipe.duration.id) track by $index" class="glyphicon glyphicon-time timespan"></span>
+                      </div>
+          <!-- END muut tiedot -näkymä -->
+          </div>
+          <!-- END oletusreseptinäkymä -->
+          <!-- notes-näkymä -->
+          <div class="animate-switch" ng-switch-when="Recipe">
+            <div class="col-sm-8 col-md-8">
+              <h4 class="sub-heading">Notes</h4>
+              <hr class="hline" />
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>
+                      Rating
+                    </th>
+                    <th>
+                      Note
+                    </th>
+                    <th>
+                      Time
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr ng-repeat="note in recipe.notes">
+                    <td>
+                      <uib-rating ng-model="note.rating" max="10" read-only="true" on-hover="hoveringOver(value)" on-leave="overStar = null" aria-labelledby="default-rating"></uib-rating>
+                    </td>
+                    <td>
+                      {{note.note}}
+                    </td>
+                    <td>
+                      <span>{{note.created_at | date:'short'}}</span>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <h4>Add note</h4>
+
+              <form>
+                <table class="table">
+                  <tr>
+                    <th>
+                      Note
+                    </th>
+                    <th>
+                      Rating
+                    </th>
+                  </tr>
+                  <tr>
+                    <td>
+                      <input class="form-control" id="note" type="text" ng-model="note.note" />
+                    </td>
+                    <td>
+
+                      <uib-rating ng-model="note.rating" max="10" on-hover="hoveringOver(value)" on-leave="overStar = null" aria-labelledby="default-rating"></uib-rating>
+                    </td>
+                    <td>
+                      <a class="btn btn-default" ng-click="submitNote(note)" type="submit">Submit</a>
+                    </td>
+                  </tr>
+                </table>
+
+              </form>
+
+            </div>
+          </div>
+          <!-- END notes-näkymä -->
+                  </div>
+        <!-- END muuttuva näkymä-containeri -->
+          </div>
+    <!-- END Alempi rivi -->
+    <!-- alarivi, jossa valmistusohje -->
+          <div ng-show="noteSwitchButton == 'Notes'" class="row">
+      <!-- tyhjä div desktop-näkymää varten, ei näy pienessä tai mobiilissa -->
+              <div class="col-md-2 hidden-sm hidden-xs">
+                  <hr class="subline" />
+              </div>
+      <!-- END Tyhjä desktop div -->
+      <!-- valmistusohjenäkymä -->
+              <div class="col-sm-7 col-md-7 instruction-div">
+
+                  <h4 class="sub-heading">Instruction</h4>
+                  <hr class="hline" />
+                  <ng-bind-html ng-bind-html="safeInstruction">
+                  </ng-bind-html>
+              </div>
+      <!-- END valmistusohjenäkymä -->
+          </div>
+    <!-- END alin rivi -->
       </div>
-    </div>
+  <!-- END mainDiv -->
   </div>
-  <div class="row">
-    <div class="col-xs-12 col-md-8">
-      <h4>Time:
-        {{recipe.duration.range}}
-        </h4>
-      <h4>Difficulty:
-        {{recipe.level.level}}
-      <h4>What to do</h4>
-      <div class="fr-view inc-box">
-        <%= @recipe.note.html_safe %>
-      </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-xs-12 col-md-8"></div>
-  </div>
-</div>
+<!-- END main container -->

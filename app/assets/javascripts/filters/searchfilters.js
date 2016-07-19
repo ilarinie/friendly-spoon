@@ -3,8 +3,8 @@ friendlyApp.filter('search', ["$filter", function($filter){
       if (!text || text.length === 0)
         return items;
 
-      // split search text on space
-      var searchTerms = text.split(' ');
+      // split search text on comma tagsinputia varten
+      var searchTerms = text.split(',');
 
       // search for single terms.
       // this reduces the item list step by step

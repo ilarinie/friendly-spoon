@@ -61,7 +61,7 @@ group :development do
 
   gem 'rails_layout'
 
-  gem 'rack-mini-profiler'
+  #gem 'rack-mini-profiler'
 end
 
   gem 'rspec'

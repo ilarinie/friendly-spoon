@@ -15,7 +15,9 @@
 //= require turbolinks
 //= require bootstrap-sprockets
 //= require libs/angular
-//= require libs/ui-bootstrap-1.3.3
+//= require locale/angular-locale_fi-fi.js
+//= require libs/ui-bootstrap-custom-tpls-1.3.3
+//= require libs/bootstrap-tagsinput.min
 //= require app
 //= require filters/searchfilters
 //= require controllers/recipesController

@@ -45,7 +45,7 @@ class RecipesController < ApplicationController
     respond_to do |format|
       if @recipe.save
         expire_fragment('recipelist')
-        format.html { redirect_to @recipe, notice: 'Recipe was successfully created.' }
+        format.html { redirect_to edit_recipe_path(@recipe), notice: 'Recipe was successfully created.' }
         format.json { render :show, status: :created, location: @recipe }
       else
         format.html { render :new }
@@ -101,6 +101,6 @@ class RecipesController < ApplicationController
     end
     # Never trust parameters from the scary internet, only allow the white list through.
     def recipe_params
-      params.require(:recipe).permit(:name, :note, :public, :level_id, :duration_id)
+      params.require(:recipe).permit(:name, :instruction, :public, :level_id, :duration_id)
     end
 end

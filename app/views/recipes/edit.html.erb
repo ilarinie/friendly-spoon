@@ -99,10 +99,10 @@
 
 
 </div>
-<h4>Add Notes:</h4>
+<h4>Add Instruction:</h4>
 <%= bootstrap_form_for(@recipe) do |f| %>
 <div class="field notefield">
-  <%= f.cktext_area :note%>
+  <%= f.cktext_area :instruction %>
 </div>
 <div class="actions">
   <%= f.submit %>

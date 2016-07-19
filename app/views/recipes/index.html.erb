@@ -6,10 +6,8 @@
     <div class="row main-row">
       <div class="col-xs-11">
         <form role="form">
-
-          <label for="searchText" >Search recipes</label>
-          <input type="text" autocomplete="off" ng-model="searchText" class="form-control" uib-typeahead="recipe as recipe.name for recipe in recipes | filter:{name:$viewValue} | limitTo:8">
-
+          <label for="searchText" >Search recipes</label><br />
+          <input type="text" value="asd" autocomplete="off" ng-model="searchText" class="form-control" data-role="tagsinput" uib-typeahead="recipe as recipe.name for recipe in recipes | filter:{name:$viewValue} | limitTo:8">
         </form>
       </div>
     </div>
