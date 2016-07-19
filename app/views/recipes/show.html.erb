@@ -1,6 +1,6 @@
 <div class="container" ng-app="friendlyApp" ng-controller="RecipeController">
   <div class="row">
-    <div class="col-xs-12">
+    <div class="col-xs-12 col-md-8">
       <% if current_user = @recipe.user %>
       <%= link_to 'Edit', edit_recipe_path(@recipe), class:'btn btn-warning edit', method: :get %>
       <% end %>
@@ -13,7 +13,7 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-xs-12">
+    <div class="col-xs-12 col-md-8">
       <h4 style="float:left;">Ingredients</h4>
       <button class="btn calcBtn" ng-click="divide()">{{divideButton}}</button>
       <button class="btn calcBtn" ng-click="double()">{{doubleButton}}</button>
@@ -42,7 +42,7 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-xs-12">
+    <div class="col-xs-12 col-md-8">
       <h4>Time:
         {{recipe.duration.range}}
         </h4>
@@ -55,6 +55,6 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-xs-12"></div>
+    <div class="col-xs-12 col-md-8"></div>
   </div>
 </div>

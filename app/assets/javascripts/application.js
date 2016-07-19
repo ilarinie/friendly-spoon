@@ -14,7 +14,11 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require bootstrap-sprockets
-//= require angular
-//= require ui-bootstrap-1.3.3
-//= require mainlist
+//= require libs/angular
+//= require libs/ui-bootstrap-1.3.3
+//= require app
+//= require filters/searchfilters
+//= require controllers/recipesController
+//= require controllers/recipeController
+//= require controllers/ingredientsController
 //= require ckeditor/init
