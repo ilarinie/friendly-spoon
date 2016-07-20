@@ -74,20 +74,15 @@
                       Rating
                     </th>
                     <th>
-                      Note
-                    </th>
-                    <th>
-                      Time
+                      At
                     </th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr ng-repeat="note in recipe.notes">
-                    <td>
+                    <td class="note-td">
                       <uib-rating ng-model="note.rating" max="10" read-only="true" on-hover="hoveringOver(value)" on-leave="overStar = null" aria-labelledby="default-rating"></uib-rating>
-                    </td>
-                    <td>
-                      {{note.note}}
+                      <br />{{note.note}}
                     </td>
                     <td>
                       <span>{{note.created_at | date:'short'}}</span>
