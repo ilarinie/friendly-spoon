@@ -1,3 +1,9 @@
+body {
+	background-color: #ffffff;
+}
+main {
+	background-color: #ffffff;
+}
 .col-centered{
     float: none;
     margin: 0 auto;
@@ -42,7 +48,7 @@ li {
 	margin-bottom: 0px;
 	padding-top: 1px;
 	padding-bottom: 1px;
-	width: 65px;
+	width: 75px;
 	color: white;
 	background-color: #dddddd;
 	border-radius: 10px 10px 0px 0px
@@ -62,4 +68,10 @@ li {
 /* Kellot "Time"-otsikon alla */
 .timespan {
 	margin-left: 3px;
+}
+/*sarakkeet note-näkymässä */
+.note-td {
+	word-wrap: break-word;
+	min-width: 210px;
+	max-width: 210px;
 }
