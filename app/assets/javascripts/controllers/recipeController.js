@@ -42,6 +42,7 @@ friendlyApp.controller("RecipeController", ["$scope", "$http","$sce",function($s
       });
     }
 
+
     $scope.noteSwitch = function(){
       if ($scope.noteSwitchButton == "Notes"){
         $scope.noteSwitchButton = "Recipe";
@@ -89,19 +90,19 @@ friendlyApp.controller("RecipeController", ["$scope", "$http","$sce",function($s
          $scope.incs = divideAmounts($scope.incs, 2);
          $scope.divided = false;
          $scope.doubled = false;
-         $scope.divideButton = "Divide!"
-         $scope.doubleButton = "Double!"
+         $scope.divideButton = "Divide"
+         $scope.doubleButton = "Double"
       }else if ($scope.divided){
          $scope.incs = multiplyAmounts($scope.incs, 4);
          $scope.divided = false;
          $scope.doubled = true;
-         $scope.divideButton = "Divide!"
+         $scope.divideButton = "Divide"
          $scope.doubleButton = "Reset"
       }else{
          $scope.incs = multiplyAmounts($scope.incs, 2);
          $scope.divided = false;
          $scope.doubled = true;
-         $scope.divideButton = "Divide!"
+         $scope.divideButton = "Divide"
          $scope.doubleButton = "Reset"
       }
   };
