@@ -35,7 +35,7 @@
                           <hr class="hline" />
                           <ul>
                               <li ng-repeat="inc in incs | orderBy:'id'">
-                                  <input type="checkbox" ng-click="toggleInc($index)">&#09;{{inc.amount}} {{inc.unit.name}} {{inc.ingredient.name}}</input>
+                                  <input type="checkbox" ng-click="toggleInc($index)">&#09;{{inc.amount}} {{inc.unit.name}} {{inc.ingredient.name}} {{inc.instruction}}</input>
                               </li>
                           </ul>
                           <h4 class="sub-heading">Ingredients I have</h4>
