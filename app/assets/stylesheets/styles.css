@@ -72,6 +72,6 @@ li {
 /*sarakkeet note-näkymässä */
 .note-td {
 	word-wrap: break-word;
-	min-width: 160px;
-	max-width: 160px;
+	min-width: 210px;
+	max-width: 210px;
 }
