@@ -89,6 +89,11 @@
                     <td>
                       <span>{{note.created_at | date:'short'}}</span>
                     </td>
+                    <div ng-show="<%= current_user.id %> == 'note.user_id'">
+                    <td >
+                      <a class="btn btn-danger" ng-click="deleteNote(note.id, $index)">Remove</a>
+                    </td>
+                  </div>
                   </tr>
                 </tbody>
               </table>

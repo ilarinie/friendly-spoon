@@ -41,6 +41,12 @@ friendlyApp.controller("RecipeController", ["$scope", "$http","$sce",function($s
         getRecipe();
       });
     }
+    $scope.deleteNote = function(note_id, index){
+
+      $http.delete('/notes/'+note_id).then(function(){
+        $scope.recipe.notes.splice(index, 1)
+      })
+    }
 
 
     $scope.noteSwitch = function(){

@@ -5,13 +5,13 @@ class NotesController < ApplicationController
     @note = Note.new(note_params)
     @note.user = current_user
     @note.save
-    redirect_to :back
+    render plain: "note saved"
   end
 
   def destroy
     @note = Note.find(params[:id])
     @note.destroy
-    redirect_to :back
+    render plain: "note destroyed"
   end
 
   private

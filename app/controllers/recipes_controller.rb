@@ -34,6 +34,8 @@ class RecipesController < ApplicationController
     @ingredient = Ingredient.new
     @recipe_ingredient = RecipeIngredient.new
     @units = Unit.all
+    @tags = (Tag.all - @recipe.tags)
+
 
   end
 

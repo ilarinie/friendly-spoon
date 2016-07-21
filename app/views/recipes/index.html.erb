@@ -37,6 +37,9 @@
               <a ng-click="sort_by('name')">Recipe</a>
             </th>
             <th>
+              <a ng-click="sort_by('ratingaverage')">Rating</a>
+            </th>
+            <th>
               <a ng-click="sort_by('duration.id')">Time</a>
             </th>
           </thead>
@@ -44,6 +47,9 @@
             <tr ng-repeat="recipe in recipes  | orderBy:order:orderDir | search:searchText">
               <td>
                 <%= link_to '{{recipe.name}}', 'recipes/{{recipe.id}}', method: :get %>
+              </td>
+              <td>
+                <uib-rating ng-model="recipe.ratingaverage" max="10" read-only="true" on-hover="hoveringOver(value)" on-leave="overStar = null" aria-labelledby="default-rating"></uib-rating>
               </td>
               <td>
                 {{recipe.duration.range}}

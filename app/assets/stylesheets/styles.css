@@ -75,3 +75,14 @@ li {
 	min-width: 210px;
 	max-width: 210px;
 }
+
+.tagdiv {
+	min-height: 40px;
+	border: 1px solid black;
+	border-radius: 25px;
+	padding:10px;
+}
+.recipetag {
+	margin-left: 10px;
+	padding: 10px;
+}

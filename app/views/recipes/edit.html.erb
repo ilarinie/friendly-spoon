@@ -97,7 +97,13 @@
   </tbody>
 </table>
 
-
+<h4>Tags</h4>
+<div class="tagdiv">
+  <span ng-repeat="tag in recipe.recipe_tags" ng-click="removeTag(tag, $index)" class="label label-pill  label-default recipetag">{{tag.tag.title}}</span>
+</div>
+<h4>Add Tags</h4>
+<div class="tagdiv">
+<span ng-repeat="tag in recipe.allTags" class="label label-pill label-default recipetag" ng-click="submitTag(tag, $index)" >{{tag.title}}</span>
 </div>
 <h4>Add Instruction:</h4>
 <%= bootstrap_form_for(@recipe) do |f| %>

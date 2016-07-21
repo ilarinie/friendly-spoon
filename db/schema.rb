@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160719165701) do
+ActiveRecord::Schema.define(version: 20160720193806) do
 
   create_table "durations", force: :cascade do |t|
     t.string   "range"
@@ -50,6 +50,13 @@ ActiveRecord::Schema.define(version: 20160719165701) do
     t.string   "instruction"
   end
 
+  create_table "recipe_tags", force: :cascade do |t|
+    t.integer  "tag_id"
+    t.integer  "recipe_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "recipes", force: :cascade do |t|
     t.string   "name"
     t.string   "instruction"
@@ -60,6 +67,12 @@ ActiveRecord::Schema.define(version: 20160719165701) do
     t.integer  "duration_id"
     t.integer  "level_id"
     t.integer  "time_id"
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.string   "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "units", force: :cascade do |t|

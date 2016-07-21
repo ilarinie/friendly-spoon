@@ -18,6 +18,8 @@ friendlyApp.controller("IngredientsController", ["$scope", "$http", function($sc
   }
   getRecipe()
 
+
+
   var _searchText;
   $scope.searchText = undefined;
 
@@ -27,9 +29,22 @@ friendlyApp.controller("IngredientsController", ["$scope", "$http", function($sc
   $scope.sort_by = function(order) {
     $scope.order = order;
   };
+  $scope.submitTag = function(tag, index){
+    $scope.recipe_tag = {}
+    $scope.recipe_tag.recipe_id = $scope.recipe.id
+    $scope.recipe_tag.tag_id = tag.id
+    $http.post('/recipe_tags', $scope.recipe_tag).then(function(){
+      getRecipe();
+    });
+  }
+  $scope.removeTag = function(tag, index){
+    console.log(tag.id)
+    $http.delete('/recipe_tags/'+ tag.id).then(function(){
+      getRecipe();
+    })
+  }
 
   $scope.submitForm = function(recipeIngredient, ingredient_id, index){
-
     //if the form is empty
     if (recipeIngredient == null) {
       recipeIngredient = {};
