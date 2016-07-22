@@ -1,3 +1,3 @@
-json.array!(@tags) do |recipe|
+json.array!(@tags) do |tag|
   json.extract! tag, :id, :title
 end
