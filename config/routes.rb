@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   resource :session, only: [:new, :create, :destroy]
   resources :notes, only: [:create, :destroy]
   resources :recipe_ingredients, only: [:create, :destroy]
-  resources :tags, only: [:new, :edit, :create]
+  resources :tags, only: [:new, :edit, :create, :index]
   resources :recipe_tags, only: [:create, :destroy]
 
   post 'recipes/:id/add/:inc_id', to: 'recipes#add_ingredient'
