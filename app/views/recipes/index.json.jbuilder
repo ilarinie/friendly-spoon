@@ -3,4 +3,3 @@ json.array!(@recipes) do |recipe|
   json.ingredients(recipe.ingredients, :name)
   json.recipe_tags(recipe.tags, :id, :title)
 end
-json.allTags(@alltags, :id, :title)
