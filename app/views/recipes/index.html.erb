@@ -39,6 +39,9 @@
               <a ng-click="sort_by('ratingaverage')">Rating</a>
             </th>
             <th>
+              Tags
+            </th>
+            <th>
               <a ng-click="sort_by('duration.id')">Time</a>
             </th>
           </thead>
@@ -49,6 +52,9 @@
               </td>
               <td>
                 <uib-rating ng-model="recipe.ratingaverage" max="10" read-only="true" on-hover="hoveringOver(value)" on-leave="overStar = null" aria-labelledby="default-rating"></uib-rating>
+              </td>
+              <td>
+                <span ng-repeat="tag in recipe.recipe_tags" class="label label-default label-pill">{{tag.title}}</span>
               </td>
               <td>
                 {{recipe.duration.range}}

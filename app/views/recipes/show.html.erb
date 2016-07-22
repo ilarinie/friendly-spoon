@@ -1,9 +1,9 @@
 <!-- main recipe container -->
   <div class="container-fluid" ng-app="friendlyApp" ng-controller="RecipeController">
-      <div class="col-sm-10 col-md-10 maindiv col-centered">
+      <div class="col-sm-13 col-md-13 maindiv col-centered">
     <!-- Yläotsikkorivi -->
           <div class="row">
-              <div class="col-sm-5 col-md-5  heading-div">
+              <div class="col-sm-7 col-md-7  heading-div">
                   <h3 class="main-heading">{{recipe.name}}</h3>
 
               </div>
@@ -30,7 +30,7 @@
                   <div ng-switch on="noteSwitchButton" class="animate-switch-container">
           <div class="animate-switch" ng-switch-when="Notes">
           <!-- ainesosanäkymä -->
-                      <div class="col-sm-4 col-md-4 ">
+                      <div class="col-sm-5 col-md-5 ">
                           <h4 class="sub-heading">Ingredients I need</h4>
                           <hr class="hline" />
                           <ul>
@@ -47,7 +47,7 @@
                           </ul>
                       </div>
           <!-- muut tiedot -näkymä -->
-                      <div class="col-sm-4 col-md-4 ">
+                      <div class="col-sm-5 col-md-5 ">
                           <h4 class="sub-heading">Average Rating</h4>
                           <uib-rating ng-model="recipe.ratingaverage" max="10" read-only="true" on-hover="hoveringOver(value)" on-leave="overStar = null" aria-labelledby="default-rating"></uib-rating>
                           <h4 class="headings sub-heading">Difficulty</h4>
@@ -58,13 +58,15 @@
             </div>
                           <h4 class="headings sub-heading">Time</h4>
                           <span ng-repeat="i in times.slice(0,recipe.duration.id) track by $index" class="glyphicon glyphicon-time timespan"></span>
+                          <h4 class="headings sub-heading">Tags</h4>
+                          <span ng-repeat="tag in recipe.recipe_tags" class="label label-default label-pill">{{tag.tag.title}}</span>
                       </div>
           <!-- END muut tiedot -näkymä -->
           </div>
           <!-- END oletusreseptinäkymä -->
           <!-- notes-näkymä -->
           <div class="animate-switch" ng-switch-when="Recipe">
-            <div class="col-sm-8 col-md-8">
+            <div class="col-sm-10 col-md-10">
               <h4 class="sub-heading">Notes</h4>
               <hr class="hline" />
               <table class="table">
