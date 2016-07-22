@@ -3,6 +3,9 @@ friendlyApp.controller("RecipesController", ["$scope", "$http", function($scope,
   $http.get('recipes.json').success(function(data, status, headers, config) {
     $scope.recipes = data;
   });
+  $http.get('tags.json').success(function(data, status, headers, config){
+  	$scope.tags = data;
+  });
 
   var _searchText;
   $scope.searchText = undefined;
