@@ -4,7 +4,7 @@ friendlyApp.filter('search', ["$filter", function($filter){
         return items;
 
       // split search text on comma tagsinputia varten
-      var searchTerms = text.split(',');
+      var searchTerms = text.split(' ');
 
       // search for single terms.
       // this reduces the item list step by step
