@@ -11,7 +11,7 @@
                   <a class="btn header-btn" ng-click="divide()">{{divideButton}}</a>
                   <a class="btn header-btn" ng-click="double()">{{doubleButton}}</a>
                   <a class="btn header-btn" ng-click="noteSwitch()">{{noteSwitchButton}}</a>
-                  <%= link_to 'Edit', edit_recipe_path(@recipe), class:'btn header-btn', method: :get %>
+                  <span ng-show="recipe.current_user_id == recipe.user_id"><%= link_to 'Edit', edit_recipe_path(@recipe), class:'btn header-btn', method: :get %></span>
 
               </div>
 
@@ -91,7 +91,7 @@
                     </td>
                     <div ng-show="<%= current_user.id %> == 'note.user_id'">
                     <td >
-                      <a class="btn btn-danger" ng-click="deleteNote(note.id, $index)">Remove</a>
+                      <span ng-show="recipe.current_user_id == note.user_id"><a class="btn btn-danger" ng-click="deleteNote(note.id, $index)">Remove</a></span>
                     </td>
                   </div>
                   </tr>
