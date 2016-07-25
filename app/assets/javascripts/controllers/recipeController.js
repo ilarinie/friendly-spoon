@@ -14,6 +14,7 @@ friendlyApp.controller("RecipeController", ["$scope", "$http","$sce",function($s
     $scope.incs = [];
     $scope.checked = [];
 
+    $scope.amount_shown = 1
     $scope.doubleButton = "Double";
     $scope.doubled = false;
     $scope.divideButton = "Divide";
@@ -71,20 +72,20 @@ friendlyApp.controller("RecipeController", ["$scope", "$http","$sce",function($s
   };
   $scope.divide = function(){
       if ($scope.divided){
-         $scope.incs = multiplyAmounts($scope.incs, 2);
+         $scope.amount_shown = 1
          $scope.divided = false;
          $scope.doubled = false;
          $scope.divideButton = "Divide";
          $scope.doubleButton = "Double";
       }
       else if ($scope.doubled){
-         $scope.incs = divideAmounts($scope.incs, 4);
+         $scope.amount_shown = -1
          $scope.divided = true;
          $scope.doubled = false;
          $scope.divideButton = "Reset";
          $scope.doubleButton = "Double";
       }else{
-         $scope.incs = divideAmounts($scope.incs, 2);
+         $scope.amount_shown = -1
          $scope.divided = true;
          $scope.doubled = false;
          $scope.divideButton = "Reset";
@@ -93,43 +94,26 @@ friendlyApp.controller("RecipeController", ["$scope", "$http","$sce",function($s
   };
   $scope.double = function(){
       if ($scope.doubled){
-         $scope.incs = divideAmounts($scope.incs, 2);
+         $scope.amount_shown = 1
          $scope.divided = false;
          $scope.doubled = false;
          $scope.divideButton = "Divide"
          $scope.doubleButton = "Double"
       }else if ($scope.divided){
-         $scope.incs = multiplyAmounts($scope.incs, 4);
+         $scope.amount_shown = 2
          $scope.divided = false;
          $scope.doubled = true;
          $scope.divideButton = "Divide"
          $scope.doubleButton = "Reset"
       }else{
-         $scope.incs = multiplyAmounts($scope.incs, 2);
+         $scope.amount_shown = 2
          $scope.divided = false;
          $scope.doubled = true;
          $scope.divideButton = "Divide"
          $scope.doubleButton = "Reset"
       }
   };
-  function divideAmounts(items, divider){
-     var length = items.length
-     for (var i = 0; i < length; i++){
-        if (items[i].hasOwnProperty("amount")){
-        items[i].amount = items[i].amount / divider
-        }
-     }
-     return items;
-  }
-  function multiplyAmounts(items, multiplier){
-     var length = items.length
-     for (var i = 0; i < length; i++){
-        if (items[i].hasOwnProperty("amount")){
-        items[i].amount = items[i].amount * multiplier
-        }
-     }
-     return items;
-  }
+
 
 
 

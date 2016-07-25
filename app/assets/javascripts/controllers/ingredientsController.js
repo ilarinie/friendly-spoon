@@ -1,3 +1,19 @@
+var AMOUNT_MIXED_REGEX = /^\d{0,2}\d(\s[1-9]\/[1-9])$/i
+var AMOUNT_DECIMAL_REGEX = /^[1-9]{1,4}[,.]{0,1}[0-9]{0,3}$/
+var AMOUNT_FRACTION_REGEX = /^[1-9]\/[1-9]$/
+
+friendlyApp.directive('incamount', function(){
+
+	return {
+		require: 'ngModel',
+		link: function(scope, elm, attrs, ctrl){
+			ctrl.$validators.incamount = function(modelValue){
+				return ctrl.$isEmpty(modelValue) || AMOUNT_DECIMAL_REGEX.test(modelValue) || AMOUNT_FRACTION_REGEX.test(modelValue) ||AMOUNT_MIXED_REGEX.test(modelValue)
+			}
+		}
+	}
+});
+
 friendlyApp.controller("IngredientsController", ["$scope", "$http", function($scope, $http) {
 
   function getIngredients(){
@@ -18,10 +34,8 @@ friendlyApp.controller("IngredientsController", ["$scope", "$http", function($sc
   }
   getRecipe()
 
-
-
-  var _searchText;
-  $scope.searchText = undefined;
+  $scope.etsinta = {}
+  $scope.etsinta.text = "";
 
 
   $scope.order = 'name';
@@ -33,6 +47,7 @@ friendlyApp.controller("IngredientsController", ["$scope", "$http", function($sc
     $scope.recipe_tag = {}
     $scope.recipe_tag.recipe_id = $scope.recipe.id
     $scope.recipe_tag.tag_id = tag.id
+
     $http.post('/recipe_tags', $scope.recipe_tag).then(function(){
       getRecipe();
     });
@@ -49,6 +64,7 @@ friendlyApp.controller("IngredientsController", ["$scope", "$http", function($sc
     if (recipeIngredient == null) {
       recipeIngredient = {};
     }
+    recipeIngredient.amount = parseAmount(recipeIngredient.amount)
     recipeIngredient.ingredient_id = ingredient_id
     recipeIngredient.recipe_id = $scope.recipe.id
     var data = recipeIngredient;
@@ -74,5 +90,22 @@ friendlyApp.controller("IngredientsController", ["$scope", "$http", function($sc
   	$http.delete('/recipe_ingredients/'+id);
     $scope.recipe.recipe_ingredients.splice(index, 1)
   };
+
+  function parseAmount(amount){
+
+	if (AMOUNT_DECIMAL_REGEX.test(amount)){
+		return parseFloat(amount.replace(',','.'))
+	}else if (AMOUNT_FRACTION_REGEX.test(amount)) {
+		var values = amount.split('/')
+		return values[0]/values[1]
+	}else if (AMOUNT_MIXED_REGEX.test(amount)){
+		var values = amount.split(' ')
+		var integer = parseInt(values[0])
+		var values2 = values[1].split('/')
+		var fraction = parseFloat(values2[0]/values2[1])
+		return integer+fraction
+	}
+  }
+
 
 }]);
