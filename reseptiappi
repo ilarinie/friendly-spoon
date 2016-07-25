@@ -10,7 +10,10 @@ Reseptinäkymä
 	-reittaus
 	-tagitus
 	-tulostusnäkymä
-	-
+
+Tagi-admin
+	-massapoisto
+	-massalisäys
 
 Uuden reseptin luonti
 	-erillinen lomake, jossa myös muokkaus

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160720193806) do
+ActiveRecord::Schema.define(version: 20160725165626) do
 
   create_table "durations", force: :cascade do |t|
     t.string   "range"
@@ -67,6 +67,7 @@ ActiveRecord::Schema.define(version: 20160720193806) do
     t.integer  "duration_id"
     t.integer  "level_id"
     t.integer  "time_id"
+    t.string   "keyword"
   end
 
   create_table "tags", force: :cascade do |t|

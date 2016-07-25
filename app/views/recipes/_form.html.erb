@@ -26,6 +26,9 @@
   <div class="field">
     <%= f.check_box :public %>
   </div>
+  <div class="field">
+    <%= f.text_field :keyword, label: "Hidden keywords for searching", label_class: "keywords-label"%>
+  </div>
   <div class="actions">
     <%= f.submit 'Add ingredients' %>
   </div>

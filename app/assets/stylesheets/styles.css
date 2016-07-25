@@ -86,3 +86,6 @@ li {
 	margin-left: 10px;
 	padding: 10px;
 }
+.keywords-label {
+	font-style: italic;
+}

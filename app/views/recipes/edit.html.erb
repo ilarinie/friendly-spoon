@@ -113,6 +113,9 @@
 <div class="field notefield">
   <%= f.cktext_area :instruction %>
 </div>
+<div class="field">
+  <%= f.text_field :keyword, label: "Hidden keywords for searching", label_class: "keywords-label"%>
+</div>
 <div class="actions">
   <%= f.submit %>
 </div>
