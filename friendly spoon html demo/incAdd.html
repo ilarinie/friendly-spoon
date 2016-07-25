@@ -1,0 +1,67 @@
+<!DOCTYPE HTML5>
+<html>
+<body ng-app="incApp" ng-controller="incController">
+
+	<form name="form">
+		<input type="text" incamount ng-model="inc.amount" name="amount"/>
+		<div ng-show="form.amount.$error.incamount" style="color:red;">
+		Amount must be an integer 1-999 or a mixed number in the format "1 1/2"
+		</div>
+		<button type="submit" ng-click="submitForm(inc)" ng-disabled="form.amount.$error.incamount">submit</button>
+		<div>
+		resulting decimal is = {{result}}
+		</div>
+	</form>
+
+
+	<script src="js/angular.js"></script>
+	<script>
+	var incApp = angular.module("incApp",[]);
+
+	var AMOUNT_MIXED_REGEX = /^\d{0,2}\d(\s[1-9]\/[1-9])$/i
+	var AMOUNT_INTEGER_REGEX = /^[1-999]$/
+	var AMOUNT_FRACTION_REGEX = /^[1-9]\/[1-9]$/
+
+incApp.directive('incamount', function(){
+	
+
+	return {
+		require: 'ngModel',
+		link: function(scope, elm, attrs, ctrl){
+			ctrl.$validators.incamount = function(modelValue){
+
+				return ctrl.$isEmpty(modelValue) || AMOUNT_INTEGER_REGEX.test(modelValue) || AMOUNT_FRACTION_REGEX.test(modelValue) ||AMOUNT_MIXED_REGEX.test(modelValue)
+			}
+		}
+	}
+});
+
+incApp.controller("incController", function ($scope){
+
+
+
+
+$scope.submitForm = function(inc){
+	if (AMOUNT_INTEGER_REGEX.test(inc.amount)){
+		$scope.result = inc.amount
+	}else if (AMOUNT_FRACTION_REGEX.test(inc.amount)) {
+		var values = inc.amount.split('/')
+		$scope.result = values[0]/values[1]
+	}else if (AMOUNT_MIXED_REGEX.test(inc.amount)){
+		var values = inc.amount.split(' ')
+		var integer = parseInt(values[0])
+		console.log("mixed integer = "+integer)
+		var values2 = values[1].split('/')
+		var fraction = parseFloat(values2[0]/values2[1])
+		$scope.result = integer+fraction
+
+	}
+}
+
+
+});
+	
+	
+	</script>
+</body>
+</html>
