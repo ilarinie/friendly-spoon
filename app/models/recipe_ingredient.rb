@@ -13,10 +13,10 @@ class RecipeIngredient < ActiveRecord::Base
         {"integer" => ramount.to_i }
       else
         if ramount-fraction == 0
-          {"numerator" => fraction.to_r.numerator, "denominator" => fraction.to_r.denominator }
+          {"numerator" => fraction.rationalize(0.01).numerator, "denominator" => fraction.rationalize(0.01).denominator }
         else
           integer = (ramount-fraction).to_i
-          {"integer" => integer, "numerator" => fraction.to_r.numerator, "denominator" => fraction.to_r.denominator}
+          {"integer" => integer, "numerator" => fraction.rationalize(0.01).numerator, "denominator" => fraction.rationalize(0.01).denominator}
         end
       end
   end
