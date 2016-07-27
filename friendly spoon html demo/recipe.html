@@ -1,126 +1,140 @@
+<!DOCTYPE html>
 <html>
 
 <head>
-    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
-    <link rel="stylesheet" type="text/css" href="css/styles.css">
-</head>
+    <title>Friendly spoon</title>
+    <link rel="stylesheet" type="text/css" href="css/libs/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="css/libs/ui-bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="css/styles.css" /> </head>
 
 <body>
-	<!-- main recipe container -->
-    <div class="container-fluid" ng-app="apper" ng-controller="IncController">
-        <div class="col-sm-12 col-md-12 maindiv">
-			<!-- Yläotsikkorivi -->
+    <!-- main recipe container -->
+    <div class="container-fluid" ng-app="apper" ng-controller="RecipeController">
+        <div class="col-sm-13 col-md-13 maindiv col-centered">
+            <!-- YlÃ¤otsikkorivi -->
             <div class="row">
                 <div class="col-sm-7 col-md-7  heading-div">
-                    <h3 class="main-heading">{{recipe.name}}</h3>
-
-                </div>
-                <div class="col-sm-5 col-md-5  heading-div">
-                    <a class="btn header-btn" ng-click="divide()">{{divideButton}}</a>
-                    <a class="btn header-btn" ng-click="double()">{{doubleButton}}</a>
-                    <a class="btn header-btn" ng-click="noteSwitch()">{{noteSwitchButton}}</a>
-                    <a class="btn header-btn">Edit</a>
-
-                </div>
-
+                    <h3 class="main-heading">{{recipe.name}}</h3> </div>
+                <div class="col-sm-5 col-md-5  heading-div"> <a class="btn header-btn" ng-click="divide()">{{divideButton}}</a> <a class="btn header-btn" ng-click="double()">{{doubleButton}}</a> <a class="btn header-btn" ng-click="noteSwitch()">{{noteSwitchButton}}</a> <span ng-show="recipe.current_user_id == recipe.user_id"><a class="btn header-btn">Edit</a></span>                    </div>
             </div>
-			<!-- END yläotsikkorivi -->
+            <!-- END ylÃ¤otsikkorivi -->
             <hr class="hline" />
-			
-			<!-- Alempi rivi, kuvat, aineosat, muut tiedot -->
+            <!-- Alempi rivi, kuvat, aineosat, muut tiedot -->
             <div class="row">
-                <div class="col-md-2 img-div">
-                    <img class="recipe-img" src="cake.png">
-                    <img class=" recipe-img" src="cake.png">
-                    <img class="recipe-img" src="cake.png">
-                </div>
-                <!-- muuttuva näkymä aineosat, muut tiedot <-> notesit -->
-                    <div ng-switch on="noteSwitchButton" class="animate-switch-container">
-						<div class="animate-switch" ng-switch-when="Notes">
-						<!-- ainesosanäkymä -->
+                <div class="col-md-2 img-div hidden-xs hidden-sm"> <img class="recipe-img" src="baking.png"> <img class=" recipe-img" src="muffins.png"> <img class="recipe-img-last" src="pumpkin.png"> </div>
+                <!-- muuttuva nÃ¤kymÃ¤ aineosat, muut tiedot <-> notesit -->
+                <div ng-switch on="noteSwitchButton" class="animate-switch-container">
+                    <div class="animate-switch" ng-switch-when="Notes">
+                        <!-- ainesosanÃ¤kymÃ¤ -->
                         <div class="col-sm-5 col-md-5 ">
                             <h4 class="sub-heading">Ingredients I need</h4>
                             <hr class="hline" />
                             <ul>
                                 <li ng-repeat="inc in incs | orderBy:'id'">
-                                    <input type="checkbox" ng-click="toggleInc($index)">&#09;{{inc.amount}} {{inc.unit.name}} {{inc.ingredient.name}}</input>
+                                    <input type="checkbox" ng-click="toggleInc($index)">&#09; <span ng-show="amount_shown==1">{{inc.ramount.integer}} <span ng-show="inc.ramount.numerator"><sup>{{inc.ramount.numerator}}</sup>&frasl;<sub>{{inc.ramount.denominator}}</sub></span></span>
+                                    <span ng-show="amount_shown==2">{{inc.double.integer}} <span ng-show="inc.double.numerator"><sup>{{inc.double.numerator}}</sup>&frasl;<sub>{{inc.double.denominator}}</sub></span></span>
+                                    <span ng-show="amount_shown==-1">{{inc.half.integer}} <span ng-show="inc.half.numerator"><sup>{{inc.half.numerator}}</sup>&frasl;<sub>{{inc.half.denominator}}</sub></span></span>
+                                    {{inc.unit.name}} {{inc.ingredient.name}} {{inc.instruction}}
                                 </li>
                             </ul>
                             <h4 class="sub-heading">Ingredients I have</h4>
                             <hr class="hline" />
                             <ul>
                                 <li ng-repeat="inc in checked">
-                                    <input type="checkbox" ng-click="unToggleInc($index)" checked>&#09;<strike>{{inc.amount}} {{inc.unit.name}} {{inc.ingredient.name}}</strike></input>
+                                    <input type="checkbox" ng-checked="true" ng-click="unToggleInc($index)" checked>&#09;<strike>
+                                        <span ng-show="amount_shown==1">{{inc.ramount.integer}} <span ng-show="inc.ramount.numerator"><sup>{{inc.ramount.numerator}}</sup>&frasl;<sub>{{inc.ramount.denominator}}</sub></span></span>
+                                        <span ng-show="amount_shown==2">{{inc.double.integer}} <span ng-show="inc.ramount.numerator"><sup>{{inc.double.numerator}}</sup>&frasl;<sub>{{inc.double.denominator}}</sub></span></span>
+                                        <span ng-show="amount_shown==-1">{{inc.half.integer}} <span ng-show="inc.ramount.numerator"><sup>{{inc.half.numerator}}</sup>&frasl;<sub>{{inc.half.denominator}}</sub></span></span>
+                                        {{inc.unit.name}} {{inc.ingredient.name}}</strike>
                                 </li>
                             </ul>
                         </div>
-						<!-- muut tiedot -näkymä -->
+                        <!-- muut tiedot -nÃ¤kymÃ¤ -->
                         <div class="col-sm-5 col-md-5 ">
                             <h4 class="sub-heading">Average Rating</h4>
-                            <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                            <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                            <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                            <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                            <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+                            <uib-rating ng-model="recipe.ratingaverage" max="10" read-only="true" on-hover="hoveringOver(value)" on-leave="overStar = null" aria-labelledby="default-rating"></uib-rating>
                             <h4 class="headings sub-heading">Difficulty</h4>
-							<div ng-switch on="recipe.level.level">
-                            <span ng-switch-when="Difficult" class="label label-danger">Difficult</span>
-							<span ng-switch-when="Easy" class="label label-success">Easy</span>
-							<span ng-switch-when="Medium" class="label label-warning">Medium</span>
-							</div>
-                            <h4 class="headings sub-heading">Time</h4>
-                            <span ng-repeat="i in times.slice(0,recipe.duration.id) track by $index" class="glyphicon glyphicon-time timespan"></span>
-                        </div>
-						<!-- END muut tiedot -näkymä -->
-						</div>
-						<!-- END oletusreseptinäkymä -->
-						<!-- notes-näkymä -->
-						<div class="animate-switch" ng-switch-when="Recipe">
-							<div class="col-sm-10 col-md-10">
-								<h4 class="sub-heading">Notes</h4>
-								<hr class="hline" />
-								<ol>
-									<li>Veri guud</li>
-								</ol>
-							</div>
-						</div>
-						<!-- END notes-näkymä -->
+                            <div ng-switch on="recipe.level.level"> <span ng-switch-when="Difficult" class="label label-danger">Difficult</span> <span ng-switch-when="Easy" class="label label-success">Easy</span> <span ng-switch-when="Medium" class="label label-warning">Medium</span> </div>
+                            <h4 class="headings sub-heading">Time</h4> <span ng-repeat="i in times.slice(0,recipe.duration.id) track by $index" class="glyphicon glyphicon-time timespan"></span>
+                            <h4 class="headings sub-heading">Tags</h4> <span ng-repeat="tag in recipe.recipe_tags" class="label label-default label-pill">{{tag.tag.title}}</span> </div>
+                        <!-- END muut tiedot -nÃ¤kymÃ¤ -->
                     </div>
-					<!-- END muuttuva näkymä-containeri -->
-            </div>
-			<!-- END Alempi rivi -->
-			<!-- alarivi, jossa valmistusohje -->
-            <div ng-show="noteSwitchButton == 'Notes'" class="row">
-				<!-- tyhjä div desktop-näkymää varten, ei näy pienessä tai mobiilissa -->
-                <div class="col-md-2 hidden-sm hidden-xs">
-                    <hr class="subline" />
+                    <!-- END oletusreseptinÃ¤kymÃ¤ -->
+                    <!-- notes-nÃ¤kymÃ¤ -->
+                    <div class="animate-switch" ng-switch-when="Recipe">
+                        <div class="col-sm-10 col-md-10">
+                            <h4 class="sub-heading">Notes</h4>
+                            <hr class="hline" />
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th> Note </th>
+                                        <th> At </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="note in recipe.notes">
+                                        <td class="note-td">
+                                            <div ng-hide="note.rating == null"> <b>Rating: </b>
+                                                <uib-rating ng-model="note.rating" max="10" read-only="true" on-hover="hoveringOver(value)" on-leave="overStar = null" aria-labelledby="default-rating"></uib-rating>
+                                            </div>
+                                            <br />{{note.note}} </td>
+                                        <td> <span>{{note.created_at | date:'short'}}</span> </td>
+                                        <div ng-show="<%= current_user.id %> == 'note.user_id'">
+                                            <td> <span ng-show="recipe.current_user_id == note.user_id"><a class="btn btn-danger" ng-click="deleteNote(note.id, $index)">Remove</a></span> </td>
+                                        </div>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <h4>Add note</h4>
+                            <form>
+                                <table class="table">
+                                    <tr>
+                                        <th> Note </th>
+                                        <th> Rating </th>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <input class="form-control" id="note" type="text" ng-model="note.note" /> </td>
+                                        <td>
+                                            <uib-rating ng-model="note.rating" max="10" on-hover="hoveringOver(value)" on-leave="overStar = null" aria-labelledby="default-rating"></uib-rating>
+                                        </td>
+                                        <td> <a class="btn btn-default" ng-click="submitNote(note)" type="submit">Submit</a> </td>
+                                    </tr>
+                                </table>
+                            </form>
+                        </div>
+                    </div>
+                    <!-- END notes-nÃ¤kymÃ¤ -->
                 </div>
-				<!-- END Tyhjä desktop div -->
-				<!-- valmistusohjenäkymä -->
+                <!-- END muuttuva nÃ¤kymÃ¤-containeri -->
+            </div>
+            <!-- END Alempi rivi -->
+            <!-- alarivi, jossa valmistusohje -->
+            <div ng-show="noteSwitchButton == 'Notes'" class="row">
+                <!-- tyhjÃ¤ div desktop-nÃ¤kymÃ¤Ã¤ varten, ei nÃ¤y pienessÃ¤ tai mobiilissa -->
+                <div class="col-md-2 hidden-sm hidden-xs">
+                    <hr class="subline" /> </div>
+                <!-- END TyhjÃ¤ desktop div -->
+                <!-- valmistusohjenÃ¤kymÃ¤ -->
                 <div class="col-sm-7 col-md-7 instruction-div">
-
                     <h4 class="sub-heading">Instruction</h4>
                     <hr class="hline" />
-                    <p class="instruction-text">
-                        Universaalista näkökulmasta katsoen leipominen rauhoittaa peräänkuulutettua lakonisuutta. On hyvin vaikea johdatella asioita siten, että leipominen näyttää todeksi asianosaisiin kohdistuvia ongelmia. Vaikka osaltamme onkin saatettu syyllistyä laiminlyönteihin, voidaan taholtamme kuitenkin todeta, että leipominen pakottaa kohderyhmää huomioimaan ilmiöiden liiallista nonfiguratiivisuutta.
-                        <ol>
-                            <li>Todellisuudessa leipominen todistaa oikeaksi hiusten halkomiseksi osoittautunutta geneerisyyttä.</li>
-                            <li>Käytännön täytyy turvautua tarkoituksenmukaisiin keinoihin, jos leipominen yksinkertaistaa viimeaikaisia absurdeja väittämiä.</li>
-                        </ol>
-                    </p>
+                    <ng-bind-html ng-bind-html="safeInstruction"> </ng-bind-html>
                 </div>
-				<!-- END valmistusohjenäkymä -->
+                <!-- END valmistusohjenÃ¤kymÃ¤ -->
             </div>
-			<!-- END alin rivi -->
+            <!-- END alin rivi -->
         </div>
-		<!-- END mainDiv -->
+        <!-- END mainDiv -->
     </div>
-	<!-- END main container -->
-
-
+    <!-- END main container -->
     <script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="js/angular.js"></script>
-    <script src="js/bootstrap.js"></script>
+    <script type="text/javascript" src="js/libs/angular.js"></script>
+    <script type="text/javascript" src="js/libs/angular-animate.js"></script>
+    <script src="js/libs/bootstrap.js"></script>
+    <script type="text/javascript" src="js/libs/uib-bootstrap.js"></script>
+    <script type="text/javascript" src="js/libs/recipe_json.js"></script>
     <script src="js/app.js"></script>
 </body>
 

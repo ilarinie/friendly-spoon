@@ -1,65 +1,56 @@
 <!DOCTYPE HTML>
 <html>
-	<head>
-		
-		<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
-		<link rel="stylesheet" type="text/css" href="css/styles.css">
-	
-		
-	</head>
-	<body>
-		<div class="container-fluid" ng-app="apper" ng-controller="IncController">
-			<div class="row">
-				<div class="col-xs-12">
-					<a href="#" class="edit btn btn-warning">Edit</a>
-					<h2 class="title">Cookies</h2>
-					<span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-					<span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-					<span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-					<span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-					<span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-xs-12">
-					<div class="inc-box">
-					<h4>Ingredients</h4>
+
+<head>
+	<title>Friendly Spoon</title>
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="css/styles.css">
+ </head>
+
+<body>
+	<div class="container-fluid" ng-app="apper" ng-controller="IncController">
+		<div class="row">
+			<div class="col-xs-12"> <a href="#" class="edit btn btn-warning">Edit</a>
+				<h2 class="title">Cookies</h2> <span class="glyphicon glyphicon-star" aria-hidden="true"></span> <span class="glyphicon glyphicon-star" aria-hidden="true"></span> <span class="glyphicon glyphicon-star" aria-hidden="true"></span> <span class="glyphicon glyphicon-star" aria-hidden="true"></span>				<span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span> </div>
+		</div>
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="inc-box">
+					<h4 style="float:left;">Ingredients</h4>
+					<button class="btn calcBtn" ng-click="divide()">{{divideButton}}</button>
+					<button class="btn calcBtn" ng-click="double()">{{doubleButton}}</button>
+					<button class="btn calcBtn" ng-click="convert()">Convert!</button>
 					<ul>
-						<li ng-repeat="inc in incs">
-						<a ng-click="toggleInc($index)"> {{inc}} </a>
-						</li>
+						<li ng-repeat="inc in incs | orderBy:'id'"> <a ng-click="toggleInc($index)"> {{inc.name}} - <span>{{inc.amount | setDecimal:2}}</span> - unit: {{inc.unit.name}}</a> </li>
 					</ul>
 					<h4>Checked</h4>
+
 					<ul>
-						<li ng-repeat="inc in checked">
-							<strike>{{inc}}</strike>
-						</li>
-					</ul>
-					<a class="btn btn-primary" ng-click="reset()">Reset</a>
-					</div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-xs-12">
-					<h4>Time: 666 minutes</h4>
-					<h4>Difficulty: Semi-hard</h4>
-					<h4>What to do</h4>
-					<ol>
-						<li>Do this and that</li>
-						<li>Do that and this</li>
-						<li>Hail satan</li>
-						<li>Eat</li>
-					</ol>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-xs-12">
-					
-				</div>
+						<li ng-repeat="inc in checked"> <strike>{{inc}}</strike> </li>
+					</ul> <a class="btn btn-primary" ng-click="reset()">Reset</a> </div>
 			</div>
 		</div>
-		<script src="js/angular.js"></script>
-		<script src="js/bootstrap.js"></script>
-		<script src="js/app.js"></script>
-	</body>
+		<div class="row">
+			<div class="col-xs-12">
+				<h4>Time: 666 minutes</h4>
+				<h4>Difficulty: Semi-hard</h4>
+				<h4>What to do</h4>
+				<ol>
+					<li>Do this and that</li>
+					<li>Do that and this</li>
+					<li>Hail satan</li>
+					<li>Eat</li>
+				</ol>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-12"> </div>
+		</div>
+	</div>
+	<script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
+	<script type="text/javascript" src="js/libs/angular.js"></script>
+	<script src="js/libs/bootstrap.js"></script>
+	<script src="js/app.js"></script>
+</body>
+
 </html>

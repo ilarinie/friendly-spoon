@@ -1,0 +1,124 @@
+
+.switch.ng-enter {
+	left: 100%;
+	position: relative;
+}
+.switch.ng-enter.ng-enter-active {
+  left: 0;
+  position: absolute;
+  
+}
+.switch.ng-leave, .ng-enter {
+   -webkit-transition: 100ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+    -moz-transition: 100ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+    -ms-transition: 100ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+    -o-transition: 100ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+    transition: 100ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+	
+}
+.switch.ng-leave {
+	opacity:1;
+}
+.switch.ng-leave-active {
+	opacity:1;
+}
+
+  .animate-repeat {
+    line-height:40px;
+    list-style:none;
+    box-sizing:border-box;
+    display: block;
+  }
+
+  .animate-repeat.ng-move,
+  .animate-repeat.ng-enter,
+  .animate-repeat.ng-leave {
+    -webkit-transition:all linear 0.5s;
+    transition:all linear 0.5s;
+  }
+
+  .animate-repeat.ng-leave.ng-leave-active,
+  .animate-repeat.ng-move,
+  .animate-repeat.ng-enter {
+    opacity:0;
+    max-height:0;
+  }
+
+  .animate-repeat.ng-leave,
+  .animate-repeat.ng-move.ng-move-active,
+  .animate-repeat.ng-enter.ng-enter-active {
+    opacity:1;
+    max-height:40px;
+  }
+  
+  .recipe-name {
+	  width:100%;
+  }
+  .recipe-tags {
+	   width:100%;
+  }
+
+/* vaakasuora viiva pääotsikon ja aliotsikoiden alla */
+.hline {
+	margin-top: 0px;
+	width:100%;
+}
+.hlines {
+	margin-top: 0px;
+	width:145%;
+}
+/* vaakasuora kikkailuviiva desktopnäkymässä kuvien alla */
+.subline {
+	margin-top: 34px;
+	width:130%;
+}
+/* kuvat reseptinäkymässä */
+.recipe-img {
+	margin-top: 10px;
+	border-radius: 25px;
+}
+/* Listan tyylit, ei palloja eikä jäätävää sisennystä */
+ul {
+	list-style-type: none;
+}
+li {
+	margin-left: -20px;
+}
+/* pääotsikon tyylit, lähemmäs viivaa */
+.main-heading{
+	margin-top: 25px;
+	margin-bottom: 0px;
+	color: #cc6699;
+}
+/* pääotsikkorivin nappuloiden tyylit */
+.header-btn{
+	margin-top: 32px;
+	text-align: center;
+	margin-bottom: 0px;
+	padding-top: 1px;
+	padding-bottom: 1px;
+	width: 75px;
+	color: white;
+	background-color: #dddddd;
+	border-radius: 10px 10px 0px 0px;
+	display: inline-block;
+}
+.header-btn:hover{
+	color: white;
+}
+/* aliotsikkojen tyylit */
+.sub-heading {
+	color: black;
+}
+/* Valmistusohjeen divider, vähän ylemmäs kuin norm */
+.instruction-div {
+	margin-top: -5px;
+}
+
+/* Kellot "Time"-otsikon alla */
+.timespan {
+	margin-left: 3px;
+}
+\.calcBtn {
+
+}
