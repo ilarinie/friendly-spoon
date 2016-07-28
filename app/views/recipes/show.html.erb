@@ -37,8 +37,8 @@
                               <li ng-repeat="inc in incs | orderBy:'id'">
                                   <input type="checkbox" ng-click="toggleInc($index)">&#09;
                                   <span ng-show="amount_shown==1">{{inc.ramount.integer}} <span ng-show="inc.ramount.numerator"><sup>{{inc.ramount.numerator}}</sup>&frasl;<sub>{{inc.ramount.denominator}}</sub></span></span>
-                                  <span ng-show="amount_shown==2">{{inc.double.integer}} <span ng-show="inc.ramount.numerator"><sup>{{inc.double.numerator}}</sup>&frasl;<sub>{{inc.double.denominator}}</sub></span></span>
-                                  <span ng-show="amount_shown==-1">{{inc.half.integer}} <span ng-show="inc.ramount.numerator"><sup>{{inc.half.numerator}}</sup>&frasl;<sub>{{inc.half.denominator}}</sub></span></span>
+                                  <span ng-show="amount_shown==2">{{inc.double.integer}} <span ng-show="inc.double.numerator"><sup>{{inc.double.numerator}}</sup>&frasl;<sub>{{inc.double.denominator}}</sub></span></span>
+                                  <span ng-show="amount_shown==-1">{{inc.half.integer}} <span ng-show="inc.half.numerator"><sup>{{inc.half.numerator}}</sup>&frasl;<sub>{{inc.half.denominator}}</sub></span></span>
                                    {{inc.unit.name}} {{inc.ingredient.name}} {{inc.instruction}}</input>
                               </li>
                           </ul>
