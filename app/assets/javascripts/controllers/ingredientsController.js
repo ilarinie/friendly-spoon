@@ -1,5 +1,5 @@
 var AMOUNT_MIXED_REGEX = /^\d{0,2}\d(\s[1-9]\/[1-9])$/i
-var AMOUNT_DECIMAL_REGEX = /^[1-9]{1,4}[,.]{0,1}[0-9]{0,3}$/
+var AMOUNT_DECIMAL_REGEX = /^[0-9]{1,4}[,.]{0,1}[0-9]{0,3}$/
 var AMOUNT_FRACTION_REGEX = /^[1-9]\/[1-9]$/
 
 friendlyApp.directive('incamount', function(){
