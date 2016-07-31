@@ -1,6 +1,39 @@
-<h4>Sign in</h4>
-<%= form_tag session_path do %>
-  <%= text_field_tag :username, params[:username] %>
-  <%= password_field_tag :password, params[:password] %>
-  <%= submit_tag "Log in" %>
-<% end %>
+<%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+<%= csrf_meta_tags %>
+
+<div class="sign-in-container">
+
+    <div class="container">
+
+        <div class="row">
+            <div class="col-md-10 hidden-xs padder "></div>
+        </div>
+        <div class="row">
+            <div class="col-centered col-md-8  signin-div">
+
+                <h2 class="signin-header">Welcome to Friendly Spoon</h2>
+                <h2 class="signin-header">Please log in</h2>
+                <%= form_tag session_path do %>
+                <div class="field-div">
+                    <div class="signin-field-container col-centered ">
+                        <h4 class="field-header">Username</h4>
+                        <%= text_field_tag :username, params[:username], class:"signin-field" %>
+                    </div>
+                    <div class="signin-field-container col-centered ">
+                        <h4 class="field-header">Password</h4>
+                        <%= password_field_tag :password, params[:password], class:"signin-field" %>
+                    </div>
+                    <div class="signin-field-container col-centered signin-button">
+                        <%= submit_tag "Log in",class:"signin-button" %>
+                        <div class="notice-text">
+                            <p ><%= notice %><%= alert %></p>
+                        </div>
+                    </div>
+
+                </div>
+                <% end %>
+            </div>
+        </div>
+    </div>
+
+</div>

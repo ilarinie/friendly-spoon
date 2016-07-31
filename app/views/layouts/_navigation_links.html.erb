@@ -1,5 +1,4 @@
 <%# add navigation links to this file %>
-<% if current_user %>
 <li>
   <%= link_to 'New Recipe', new_recipe_path %>
 </li>
@@ -7,10 +6,5 @@
     <%= link_to 'New Tag', new_tag_path, method: :get %>
 </li>
 <li>
-    <%= link_to 'Sign Out', logout_url %>
+    <%= link_to 'Log Out', logout_url, method: :get %>
 </li>
-<% else %>
-<li>
-  <%= link_to 'Sign in', login_url %>
-</li>
-<% end %>
