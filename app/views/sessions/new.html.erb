@@ -1,39 +1,46 @@
-<%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
-<%= csrf_meta_tags %>
+<!doctype html>
+<head>
+    <%= stylesheet_link_tag '/assets/signin', media: 'all', 'data-turbolinks-track' => true %>
+    <%= stylesheet_link_tag 'bootstrap.min', media: 'all', 'data-turbolinks-track' => true %>
+        <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+</head>
+<body>
+    <div class="sign-in-container container-fluid">
 
-<div class="sign-in-container">
+        <div class="container-fluid">
 
-    <div class="container">
+            <div class="row hidden-xs">
+                <div class="col-md-10 hidden-xs padder "></div>
+            </div>
+            <div class="row">
+                <div class="col-centered col-md-8  signin-div">
 
-        <div class="row">
-            <div class="col-md-10 hidden-xs padder "></div>
-        </div>
-        <div class="row">
-            <div class="col-centered col-md-8  signin-div">
-
-                <h2 class="signin-header">Welcome to Friendly Spoon</h2>
-                <h2 class="signin-header">Please log in</h2>
-                <%= form_tag session_path do %>
-                <div class="field-div">
-                    <div class="signin-field-container col-centered ">
-                        <h4 class="field-header">Username</h4>
-                        <%= text_field_tag :username, params[:username], class:"signin-field" %>
-                    </div>
-                    <div class="signin-field-container col-centered ">
-                        <h4 class="field-header">Password</h4>
-                        <%= password_field_tag :password, params[:password], class:"signin-field" %>
-                    </div>
-                    <div class="signin-field-container col-centered signin-button">
-                        <%= submit_tag "Log in",class:"signin-button" %>
-                        <div class="notice-text">
-                            <p ><%= notice %><%= alert %></p>
+                    <h2 class="signin-header">Welcome to Friendly Spoon</h2>
+                    <h2 class="signin-header">Please log in</h2>
+                    <%= form_tag session_path do %>
+                    <div class="field-div">
+                        <div class="signin-field-container col-centered ">
+                            <h4 class="field-header">Username</h4>
+                            <%= text_field_tag :username, params[:username], class:"signin-field" %>
                         </div>
-                    </div>
+                        <div class="signin-field-container col-centered ">
+                            <h4 class="field-header">Password</h4>
+                            <%= password_field_tag :password, params[:password], class:"signin-field" %>
+                        </div>
+                        <div class="signin-field-container col-centered signin-button">
+                            <%= submit_tag "Log in",class:"signin-button" %>
+                            <div class="notice-text">
+                                <p ><%= notice %><%= alert %></p>
+                            </div>
+                        </div>
 
+                    </div>
+                    <% end %>
                 </div>
-                <% end %>
             </div>
         </div>
-    </div>
 
-</div>
+    </div>
+</body>
+</html>

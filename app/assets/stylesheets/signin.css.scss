@@ -1,4 +1,14 @@
 @import url(https://fonts.googleapis.com/css?family=The+Girl+Next+Door|Loved+by+the+King|Handlee|Amatic+SC|Clicker+Script|Homemade+Apple);
+@import "bootstrap-sprockets";
+@import "bootstrap";
+body {
+  height: 100%;
+  background-color: #022f32;
+}
+.col-centered {
+  float: none;
+  margin: 0 auto;
+}
 .sign-in-container {
   font-family: 'Handlee', cursive;
 
@@ -13,7 +23,7 @@
  background-position: center top;
   background-color: #022f32;
   background-repeat: no-repeat;
-  height: 100%;
+  height: 900px;
 }
 .padder {
   height: 400px;
@@ -23,18 +33,12 @@
 }
 .signin-div  {
   text-align: center;
-
   }
-.signin-messages {
-  font-family:'Arial';
-}
-
 .signin-header{
   text-align: center;
 }
 .signin-field-container {
   text-align: center;
-
 }
 .field-div {
   margin-top: 40px;
